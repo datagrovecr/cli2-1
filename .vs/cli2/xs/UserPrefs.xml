@@ -1,14 +1,19 @@
 ﻿<Properties StartupConfiguration="{6680E411-7050-4FE2-B9F3-92AD5BC48260}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="docx_lib/DgDocx.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="docx_md/Program.cs">
     <Files>
       <File FileName="docx_lib/DgDocx.cs" Line="58" Column="40" />
+      <File FileName="docx_md/Program.cs" Line="66" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="cli2" expanded="True" selected="True">
             <Node name="docx_lib" expanded="True" />
+            <Node name="docx_md" expanded="True" />
+            <Node name="docx_web" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -17,8 +22,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.docx__md PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
