@@ -18,27 +18,30 @@ internal class Program
             string root = outdir + Path.GetFileNameWithoutExtension(mdFile);
             var docxFile = root + ".docx";
             {
-                var fileStream = File.Open(mdFile, FileMode.Open);
-                Stream outStream = null;
-                try {
-                 outStream = File.Open(docxFile, FileMode.Create);
+                try
+                {
+                    var fileStream = File.Open(mdFile, FileMode.Open);
+                    Stream outStream = null;
 
-                }catch(Exception e){
-                    
-                }
-                if (outStream!=null){
+                    // markdown to docx
+                    outStream = File.Open(docxFile, FileMode.Create);
                     var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
                     await DgDocx.md_to_docx(fileStream, outStream, buffer); // template);
-                    outStream.Close();                    
+                    outStream.Close();
+
+                                
+                    // convert the docx back to markdown.
+                    var instream = File.Open(docxFile, FileMode.Open);
+                    var outstream = File.Open(root + ".md", FileMode.Create);
+                    await DgDocx.docx_to_md(instream, outstream);
+            
+                }catch (Exception e)
+                {
+                    Console.WriteLine($"{mdFile} failed {e}");
                 }
             }
+            return;
 
-            {
-                // convert the docx back to markdown.
-                var instream = File.Open(docxFile, FileMode.Open);
-                var outstream = File.Open(root + ".md", FileMode.Create);
-                await DgDocx.docx_to_md(instream, outstream);
-            }
         }
     }
 
