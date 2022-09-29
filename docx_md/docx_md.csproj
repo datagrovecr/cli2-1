@@ -4,6 +4,12 @@
     <ProjectReference Include="..\docx_lib\docx_lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="test_results\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="test_results\" />
+  </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>

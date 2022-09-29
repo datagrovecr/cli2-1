@@ -8,32 +8,30 @@ internal class Program
 {
     static async Task Main(string[] args)
     {
-        var outdir = "../test_results/";
-        var template = "../template.docx";
+        var outdir = "/Users/fabianvalverde/Documents/GitHub/cli2/docx_md/test_results/";
+        string[] files = Directory.GetFiles("/Users/fabianvalverde/Documents/GitHub/cli2/docx_md/folder_Tests", "*.md", SearchOption.TopDirectoryOnly);
 
-        string[] files = Directory.GetFiles("../test_md", "*.md", SearchOption.AllDirectories);
-        DgDocx.createWordprocessingDocument("../test_results/hello.docx");
         foreach (var mdFile in files)
         {
+            //Just getting the end route
             string fn = Path.GetFileNameWithoutExtension(mdFile);
-            string root = outdir + fn;
+            string root = outdir + fn.Replace("_md", "");
             var docxFile = root + ".docx";
             {
                 try
                 {
                    // markdown to docx
                     var md =  File.ReadAllText(mdFile);
-                    var doc = new MemoryStream();
-                    // var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
-                    await DgDocx.md_to_docx(md, doc); // template);
-                    File.WriteAllBytes(docxFile, doc.ToArray());                       
-                    
-                                
+                    var inputStream = new MemoryStream();
+                    await DgDocx.md_to_docx(md, inputStream);
+                    File.WriteAllBytes(docxFile, inputStream.ToArray());                       
+
+
                     // convert the docx back to markdown.
                     using (var instream = File.Open(docxFile, FileMode.Open)){
                         var outstream = new MemoryStream();
                         await DgDocx.docx_to_md(instream, outstream,fn+".md");
-                        using (var fileStream = new FileStream(root+".md.zip", FileMode.Create))
+                        using (var fileStream = new FileStream(root+".zip", FileMode.Create))
                         {
                             outstream.Seek(0, SeekOrigin.Begin);
                             outstream.CopyTo(fileStream);

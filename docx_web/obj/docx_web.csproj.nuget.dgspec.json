@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jim/dev/experiments/cli2/docx_web/docx_web.csproj": {}
+    "/Users/fabianvalverde/Documents/GitHub/cli2/docx_web/docx_web.csproj": {}
   },
   "projects": {
-    "/Users/jim/dev/experiments/cli2/docx_lib/docx_lib.csproj": {
+    "/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/docx_lib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jim/dev/experiments/cli2/docx_lib/docx_lib.csproj",
+        "projectUniqueName": "/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/docx_lib.csproj",
         "projectName": "docx_lib",
-        "projectPath": "/Users/jim/dev/experiments/cli2/docx_lib/docx_lib.csproj",
-        "packagesPath": "/Users/jim/.nuget/packages/",
-        "outputPath": "/Users/jim/dev/experiments/cli2/docx_lib/obj/",
+        "projectPath": "/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/docx_lib.csproj",
+        "packagesPath": "/Users/fabianvalverde/.nuget/packages/",
+        "outputPath": "/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jim/.nuget/NuGet/NuGet.Config"
+          "/Users/fabianvalverde/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -67,17 +67,17 @@
         }
       }
     },
-    "/Users/jim/dev/experiments/cli2/docx_web/docx_web.csproj": {
+    "/Users/fabianvalverde/Documents/GitHub/cli2/docx_web/docx_web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jim/dev/experiments/cli2/docx_web/docx_web.csproj",
+        "projectUniqueName": "/Users/fabianvalverde/Documents/GitHub/cli2/docx_web/docx_web.csproj",
         "projectName": "docx_web",
-        "projectPath": "/Users/jim/dev/experiments/cli2/docx_web/docx_web.csproj",
-        "packagesPath": "/Users/jim/.nuget/packages/",
-        "outputPath": "/Users/jim/dev/experiments/cli2/docx_web/obj/",
+        "projectPath": "/Users/fabianvalverde/Documents/GitHub/cli2/docx_web/docx_web.csproj",
+        "packagesPath": "/Users/fabianvalverde/.nuget/packages/",
+        "outputPath": "/Users/fabianvalverde/Documents/GitHub/cli2/docx_web/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jim/.nuget/NuGet/NuGet.Config"
+          "/Users/fabianvalverde/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -89,8 +89,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/jim/dev/experiments/cli2/docx_lib/docx_lib.csproj": {
-                "projectPath": "/Users/jim/dev/experiments/cli2/docx_lib/docx_lib.csproj"
+              "/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/docx_lib.csproj": {
+                "projectPath": "/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/docx_lib.csproj"
               }
             }
           }

@@ -34,14 +34,11 @@ public class DgDocx
     }
 
     // stream here because anticipating zip.
-    public async static Task md_to_docx(String md, Stream generatedDocument, bool debug = false) //String mdFile, String docxFile, String template)
+    public async static Task md_to_docx(String md, Stream inputStream, bool debug = false) //String mdFile, String docxFile, String template)
     {
         var html = Markdown.ToHtml(md);
 
-        // if (template != null)
-        //     template.CopyTo(generatedDocument);
-        generatedDocument.Position = 0L;
-        using (WordprocessingDocument doc = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document, true))
+        using (WordprocessingDocument doc = WordprocessingDocument.Create(inputStream, WordprocessingDocumentType.Document, true))
         {
             MainDocumentPart mainPart = doc.AddMainDocumentPart();
 
@@ -63,13 +60,9 @@ public class DgDocx
                 }
             }
 
-
-
-            //new Document(new Body()).Save(mainPart);
             HtmlConverter converter = new HtmlConverter(mainPart);
             converter.ParseHtml(html);
             mainPart.Document.Save();
-
         }
     }
 
@@ -84,17 +77,17 @@ public class DgDocx
         StyleDefinitionsPart styleDefinitionsPart = wordDoc.MainDocumentPart.StyleDefinitionsPart;
         if (parts != null)
         {
-            foreach (var node in parts.ChildElements)
+            foreach (var block in parts.ChildElements)
             {
-                if (node is Paragraph)
+                if (block is Paragraph)
                 {
-                    ProcessParagraph((Paragraph)node, textBuilder);
+                    ProcessParagraph((Paragraph)block, textBuilder);
                     textBuilder.AppendLine("");
                 }
 
-                if (node is Table)
+                if (block is Table)
                 {
-                    ProcessTable((Table)node, textBuilder);
+                    ProcessTable((Table)block, textBuilder);
                 }
             }
         }
@@ -132,17 +125,17 @@ public class DgDocx
         }
     }
 
-    private static void ProcessParagraph(Paragraph node, StringBuilder textBuilder)
+    private static void ProcessParagraph(Paragraph block, StringBuilder textBuilder)
     {
 
-        foreach (var run in node.Descendants<Run>())
+        foreach (var run in block.Descendants<Run>())
         {
             String prefix = "";
             if (run.RunProperties != null)
             {
                 if (run.RunProperties.Bold != null)
                 {
-                    prefix += "*";
+                    prefix += "**";
                 }
                 if (run.RunProperties.Italic != null)
                 {

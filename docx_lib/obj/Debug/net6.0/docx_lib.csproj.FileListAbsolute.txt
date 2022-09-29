@@ -22,3 +22,15 @@
 /Users/jim/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/refint/docx_lib.dll
 /Users/jim/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.pdb
 /Users/jim/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/ref/docx_lib.dll
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/bin/Debug/net6.0/docx_lib.deps.json
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/bin/Debug/net6.0/docx_lib.dll
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/bin/Debug/net6.0/docx_lib.pdb
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.csproj.AssemblyReference.cache
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.GeneratedMSBuildEditorConfig.editorconfig
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.AssemblyInfoInputs.cache
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.AssemblyInfo.cs
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.csproj.CoreCompileInputs.cache
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.dll
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/refint/docx_lib.dll
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.pdb
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/ref/docx_lib.dll
