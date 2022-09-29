@@ -9,9 +9,10 @@ internal class Program
         var mdFile = "../test.md";
         var mdFile2 = "../test2.md";
         var docxFile = mdFile + ".docx";
+        var template = "../template.docx";
         if (File.Exists(docxFile)) File.Delete(docxFile);
 
-        // var buffer = new FileStream(template, FileMode.Open, FileAccess.Read))
+
 
         {
             var fileStream = File.Open(mdFile, FileMode.Open);
@@ -20,7 +21,8 @@ internal class Program
             {
                 return;
             }
-            DgDocx.md_to_docx(fileStream, outStream, null); // template);
+            var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
+            DgDocx.md_to_docx(fileStream, outStream, buffer); // template);
             outStream.Close();
         }
 
