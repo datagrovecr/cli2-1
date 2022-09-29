@@ -30,31 +30,50 @@ public class DgDocx
             Run run = para.AppendChild(new Run());
             run.AppendChild(new Text("Create text in body - CreateWordprocessingDocument"));
         }
-        
+
     }
-    public async static Task md_to_docx(Stream input, Stream generatedDocument, Stream? template) //String mdFile, String docxFile, String template)
+
+    // stream here because anticipating zip.
+    public async static Task md_to_docx(String md, Stream generatedDocument, bool debug = false) //String mdFile, String docxFile, String template)
     {
-        var md = new StreamReader(input).ReadToEnd();
         var html = Markdown.ToHtml(md);
 
-        if (template != null)
-            template.CopyTo(generatedDocument);
+        // if (template != null)
+        //     template.CopyTo(generatedDocument);
         generatedDocument.Position = 0L;
-       using( WordprocessingDocument doc = WordprocessingDocument.Open(generatedDocument, true)) {
-            MainDocumentPart mainPart = doc.MainDocumentPart;
-            if (mainPart == null)
-            {
-                mainPart = doc.AddMainDocumentPart();
-                new Document(new Body()).Save(mainPart);
+        using (WordprocessingDocument doc = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document, true))
+        {
+            MainDocumentPart mainPart = doc.AddMainDocumentPart();
+
+            // Create the document structure and add some text.
+            mainPart.Document = new Document();
+            Body body = mainPart.Document.AppendChild(new Body());
+
+            if (debug) {
+                {
+                    Paragraph para = body.AppendChild(new Paragraph());
+                    Run run = para.AppendChild(new Run());
+                    run.AppendChild(new Text("Markdown: " + md));
+                }
+
+                {
+                    Paragraph para2 = body.AppendChild(new Paragraph());
+                    Run run2 = para2.AppendChild(new Run());
+                    run2.AppendChild(new Text("Html: " + html));
+                }
             }
 
+
+
+            //new Document(new Body()).Save(mainPart);
             HtmlConverter converter = new HtmlConverter(mainPart);
             converter.ParseHtml(html);
-            mainPart.Document.Save();        
-       }
+            mainPart.Document.Save();
+
+        }
     }
 
-    public async static Task docx_to_md(Stream infile, Stream outfile,String name)
+    public async static Task docx_to_md(Stream infile, Stream outfile, String name)
     {
         WordprocessingDocument wordDoc = WordprocessingDocument.Open(infile, false);
         DocumentFormat.OpenXml.Wordprocessing.Body body
@@ -81,19 +100,20 @@ public class DgDocx
         }
 
 
-        
+
         using (var archive = new ZipArchive(outfile, ZipArchiveMode.Create, true))
         {
             var demoFile = archive.CreateEntry(name);
-            using (var entryStream = demoFile.Open()) {
+            using (var entryStream = demoFile.Open())
+            {
                 using (var streamWriter = new StreamWriter(entryStream))
                 {
                     String s = textBuilder.ToString();
                     streamWriter.Write(s);
-                }                
+                }
             }
         }
-}
+    }
 
     private static void ProcessTable(Table node, StringBuilder textBuilder)
     {

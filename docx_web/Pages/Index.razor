@@ -13,50 +13,62 @@ Select your Docx file. File is processed locally and remains private.
 
 <InputFile OnChange="@LoadFiles" multiple accept='.docx' />
 
-<p> @status</p>
-<p> @text </p>
+<pre> @status</pre>
 
 @code {
-    private string[] files = new string[] { "none selected" };
+    
     private string status = "";
-
-    private string text = "";
 
     private async Task LoadFiles(InputFileChangeEventArgs e)
     {
-        status += "\nChanged";
         try
         {
             var buffer = new byte[4096];
             foreach (IBrowserFile file in e.GetMultipleFiles(e.FileCount))
-            {
-                status += "\nReading file: " + file.Name;
-                _ = InvokeAsync(StateHasChanged);
-
-                var fileStream = new MemoryStream();
-                await file.OpenReadStream(maxAllowedSize: long.MaxValue).CopyToAsync(fileStream);
-
+            {   
+                String download_name = Path.GetFileNameWithoutExtension(file.Name);
+                
                 var outstream = new MemoryStream();
-                if (file.Name.EndsWith(".docx"))
-                {
-                    await DgDocx.docx_to_md(fileStream, outstream,"readme.md");
+                var str =  file.OpenReadStream(maxAllowedSize: long.MaxValue);
+
+                if (file.Name.EndsWith(".md")){
+                    status += "\nmd file";
+                    download_name += ".docx";
+                    var temp = new MemoryStream();
+                    var md = "hello, world";
+                    using (var reader = new StreamReader(str))
+                    {
+                        md = await reader.ReadToEndAsync();
+                    }
+                    await DgDocx.md_to_docx(md, temp);
+                    outstream.Write(temp.ToArray());
+                } else {
+                    // covert docx file to zip/md.
+                    // copy to memory stream for sync access.
+                    var fileStream = new MemoryStream();
+                    await str.CopyToAsync(fileStream);
+                    status += "\ndocx file";
+                    await DgDocx.docx_to_md(fileStream, outstream,download_name+".md");
+                    download_name += ".zip";
                 }
-                else
-                {
-                    var generatedDocument = new MemoryStream();
-                    await DgDocx.md_to_docx(fileStream, generatedDocument, null);
-                    //outstream.WriteAsync(generatedDocument.ToArray());
+
+                //await outstream.WriteAsync(outstream.ToArray());
+                if (outstream.Length>0){
+                    Console.Write($"{outstream.Length}");
+                    outstream.Seek(0,0);
+                    using var streamRef = new DotNetStreamReference(stream: outstream);
+                        await JS.InvokeVoidAsync("downloadFileFromStream", download_name, streamRef);
+
+                } else {
+                    status += "\nConversion failed";
                 }
-                using var streamRef = new DotNetStreamReference(stream: outstream);
-                await JS.InvokeVoidAsync("downloadFileFromStream", file.Name + ".md", streamRef);
-            }
-            status = "done";
+             }
         }
         catch (Exception ex)
         {
             status += "\nError: " + ex.Message;
-            _ = InvokeAsync(StateHasChanged);
         }
         //var memoryStream = new MemoryStream();
+         _ = InvokeAsync(StateHasChanged);
     }
 }

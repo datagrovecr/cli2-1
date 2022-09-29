@@ -22,12 +22,12 @@ internal class Program
                 try
                 {
                    // markdown to docx
-                    using (var mdfile = File.Open(mdFile, FileMode.Open)){
-                        var doc = new MemoryStream();
-                        var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
-                        await DgDocx.md_to_docx(mdfile, doc, buffer); // template);
-                        File.WriteAllBytes(docxFile, doc.ToArray());                       
-                    }
+                    var md =  File.ReadAllText(mdFile);
+                    var doc = new MemoryStream();
+                    // var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
+                    await DgDocx.md_to_docx(md, doc); // template);
+                    File.WriteAllBytes(docxFile, doc.ToArray());                       
+                    
                                 
                     // convert the docx back to markdown.
                     using (var instream = File.Open(docxFile, FileMode.Open)){
@@ -43,7 +43,9 @@ internal class Program
                 {
                     Console.WriteLine($"{mdFile} failed {e}");
                 }
+                
             }
+          
         }
     }
 
