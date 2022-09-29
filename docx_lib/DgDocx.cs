@@ -131,16 +131,32 @@ public class DgDocx
         foreach (var run in block.Descendants<Run>())
         {
             String prefix = "";
+            
+
+
+
             if (run.RunProperties != null)
             {
-                if (run.RunProperties.Bold != null)
+                OpenXmlElement expression = run.RunProperties.ChildElements.ElementAtOrDefault(0);
+
+
+
+                switch (expression)
                 {
-                    prefix += "**";
+                    case Bold:
+                        if (run.RunProperties.ChildElements.Count == 2)
+                        {
+                            prefix += "***";
+                            break;
+                        }
+                        prefix += "**";
+                        break;
+                    case Italic:
+                        prefix += "*";
+                        break;
                 }
-                if (run.RunProperties.Italic != null)
-                {
-                    prefix += "_";
-                }
+
+
             }
             textBuilder.Append(prefix + run.InnerText + prefix + " ");
             prefix = "";
