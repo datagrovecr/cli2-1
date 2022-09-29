@@ -39,12 +39,12 @@ Select your Docx file. File is processed locally and remains private.
                 var outstream = new MemoryStream();
                 if (file.Name.EndsWith(".docx"))
                 {
-                    DgDocx.docx_to_md(fileStream, outstream);
+                    await DgDocx.docx_to_md(fileStream, outstream,"readme.md");
                 }
                 else
                 {
                     var generatedDocument = new MemoryStream();
-                    DgDocx.md_to_docx(fileStream, generatedDocument, null);
+                    await DgDocx.md_to_docx(fileStream, generatedDocument, null);
                     //outstream.WriteAsync(generatedDocument.ToArray());
                 }
                 using var streamRef = new DotNetStreamReference(stream: outstream);

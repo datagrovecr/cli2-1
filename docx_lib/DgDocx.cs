@@ -9,38 +9,52 @@ using DocumentFormat.OpenXml.Validation;
 using DocumentFormat.OpenXml.Wordprocessing;
 using HtmlToOpenXml;
 using System.Text;
+using System.IO.Compression;
 
 public class DgDocx
 {
 
+    public static void createWordprocessingDocument(string filepath)
+    {
+        // Create a document by supplying the filepath. 
+        using (WordprocessingDocument wordDocument =
+            WordprocessingDocument.Create(filepath, WordprocessingDocumentType.Document))
+        {
+            // Add a main document part. 
+            MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+
+            // Create the document structure and add some text.
+            mainPart.Document = new Document();
+            Body body = mainPart.Document.AppendChild(new Body());
+            Paragraph para = body.AppendChild(new Paragraph());
+            Run run = para.AppendChild(new Run());
+            run.AppendChild(new Text("Create text in body - CreateWordprocessingDocument"));
+        }
+        
+    }
     public async static Task md_to_docx(Stream input, Stream generatedDocument, Stream? template) //String mdFile, String docxFile, String template)
     {
-        if (template != null)
-            template.CopyTo(generatedDocument);
-
         var md = new StreamReader(input).ReadToEnd();
         var html = Markdown.ToHtml(md);
 
-
+        if (template != null)
+            template.CopyTo(generatedDocument);
         generatedDocument.Position = 0L;
-        WordprocessingDocument package = WordprocessingDocument.Open(generatedDocument, true);
+       using( WordprocessingDocument doc = WordprocessingDocument.Open(generatedDocument, true)) {
+            MainDocumentPart mainPart = doc.MainDocumentPart;
+            if (mainPart == null)
+            {
+                mainPart = doc.AddMainDocumentPart();
+                new Document(new Body()).Save(mainPart);
+            }
 
-        MainDocumentPart mainPart = package.MainDocumentPart;
-        if (mainPart == null)
-        {
-            mainPart = package.AddMainDocumentPart();
-            new Document(new Body()).Save(mainPart);
-        }
-
-        HtmlConverter converter = new HtmlConverter(mainPart);
-        Body body = mainPart.Document.Body;
-        converter.ParseHtml(html);
-        mainPart.Document.Save();
-
-
+            HtmlConverter converter = new HtmlConverter(mainPart);
+            converter.ParseHtml(html);
+            mainPart.Document.Save();        
+       }
     }
 
-    public async static Task docx_to_md(Stream infile, Stream outfile)
+    public async static Task docx_to_md(Stream infile, Stream outfile,String name)
     {
         WordprocessingDocument wordDoc = WordprocessingDocument.Open(infile, false);
         DocumentFormat.OpenXml.Wordprocessing.Body body
@@ -65,9 +79,21 @@ public class DgDocx
                 }
             }
         }
-        String s = textBuilder.ToString();
-        new StreamWriter(outfile).Write(s);
-    }
+
+
+        
+        using (var archive = new ZipArchive(outfile, ZipArchiveMode.Create, true))
+        {
+            var demoFile = archive.CreateEntry(name);
+            using (var entryStream = demoFile.Open()) {
+                using (var streamWriter = new StreamWriter(entryStream))
+                {
+                    String s = textBuilder.ToString();
+                    streamWriter.Write(s);
+                }                
+            }
+        }
+}
 
     private static void ProcessTable(Table node, StringBuilder textBuilder)
     {

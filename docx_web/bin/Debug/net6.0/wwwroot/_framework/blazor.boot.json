@@ -200,15 +200,15 @@
       "mscorlib.dll": "sha256-MnMyZHtcymf0sLxXeFBbQZVsdNdxT0GXJaa9t3ZdSek=",
       "netstandard.dll": "sha256-+SGdnDhVMiZ9hq0EsYwJ+mcK0odf3bAtXnSKLorGDCs=",
       "System.Private.CoreLib.dll": "sha256-mqfalNg3wC8XHlyA+j5ioNcnc0kt4prNudKdyJoaYaU=",
-      "docx_lib.dll": "sha256-tpsXjDlUGfn2AsyvTzW+OqehN4OlJWFZo3m5addzkHk=",
-      "docx_web.dll": "sha256-1zYvOFmrKx+WSW4naZE+dYD0+FfWgVNY\/rSR8MQdgw8="
+      "docx_lib.dll": "sha256-ezldt58wqRd1H2uCmX79iH5RAnueaf48PvT13YBO5uI=",
+      "docx_web.dll": "sha256-ns0pciLqIWi03tH7cjaIOQz\/5jWEvj64MKjcSeON55M="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "docx_lib.pdb": "sha256-3fer5Cy3dpzRlf3qPX5f4\/2SgK2Rt\/AhqJ0q47Y6Vwk=",
-      "docx_web.pdb": "sha256-ATf8flD8NjWCq4UEFjBXs1Y2vnvH6RpV+vdl2VNCGr0="
+      "docx_lib.pdb": "sha256-dckbRsR7iIbffMDhlRJr0F2B1CQHYUiIAfOG4ylK3v0=",
+      "docx_web.pdb": "sha256-zXtvU1pHRV1AN3VUYwjSIcnogEzMUNCpYQ\/RShqOzwA="
     },
     "runtime": {
       "dotnet.6.0.9.5xbcmlyk8o.js": "sha256-Azk5sbYFVo84h8NpIst9roIPGLH2y8ewQ9SY\/sUHvgs=",

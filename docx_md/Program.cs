@@ -12,36 +12,38 @@ internal class Program
         var template = "../template.docx";
 
         string[] files = Directory.GetFiles("../test_md", "*.md", SearchOption.AllDirectories);
-
+        DgDocx.createWordprocessingDocument("../test_results/hello.docx");
         foreach (var mdFile in files)
         {
-            string root = outdir + Path.GetFileNameWithoutExtension(mdFile);
+            string fn = Path.GetFileNameWithoutExtension(mdFile);
+            string root = outdir + fn;
             var docxFile = root + ".docx";
             {
                 try
                 {
-                    var fileStream = File.Open(mdFile, FileMode.Open);
-                    Stream outStream = null;
-
-                    // markdown to docx
-                    outStream = File.Open(docxFile, FileMode.Create);
-                    var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
-                    await DgDocx.md_to_docx(fileStream, outStream, buffer); // template);
-                    outStream.Close();
-
+                   // markdown to docx
+                    using (var mdfile = File.Open(mdFile, FileMode.Open)){
+                        var doc = new MemoryStream();
+                        var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
+                        await DgDocx.md_to_docx(mdfile, doc, buffer); // template);
+                        File.WriteAllBytes(docxFile, doc.ToArray());                       
+                    }
                                 
                     // convert the docx back to markdown.
-                    var instream = File.Open(docxFile, FileMode.Open);
-                    var outstream = File.Open(root + ".md", FileMode.Create);
-                    await DgDocx.docx_to_md(instream, outstream);
-            
+                    using (var instream = File.Open(docxFile, FileMode.Open)){
+                        var outstream = new MemoryStream();
+                        await DgDocx.docx_to_md(instream, outstream,fn+".md");
+                        using (var fileStream = new FileStream(root+".md.zip", FileMode.Create))
+                        {
+                            outstream.Seek(0, SeekOrigin.Begin);
+                            outstream.CopyTo(fileStream);
+                        }                        
+                    }
                 }catch (Exception e)
                 {
                     Console.WriteLine($"{mdFile} failed {e}");
                 }
             }
-            return;
-
         }
     }
 
