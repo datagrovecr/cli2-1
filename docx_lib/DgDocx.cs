@@ -37,7 +37,7 @@ public class DgDocx
         converter.ParseHtml(html);
         mainPart.Document.Save();
 
-        AssertThatOpenXmlDocumentIsValid(package);
+
     }
 
     public async static Task docx_to_md(Stream infile, Stream outfile)
@@ -113,25 +113,5 @@ public class DgDocx
 
 
 
-    static void AssertThatOpenXmlDocumentIsValid(WordprocessingDocument wpDoc)
-    {
 
-        var validator = new OpenXmlValidator(FileFormatVersions.Office2010);
-        var errors = validator.Validate(wpDoc);
-
-        if (!errors.GetEnumerator().MoveNext())
-            return;
-
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("The document doesn't look 100% compatible with Office 2010.\n");
-
-        Console.ForegroundColor = ConsoleColor.Gray;
-        foreach (ValidationErrorInfo error in errors)
-        {
-            Console.Write("{0}\n\t{1}", error.Path.XPath, error.Description);
-            Console.WriteLine();
-        }
-
-        Console.ReadLine();
-    }
 }
