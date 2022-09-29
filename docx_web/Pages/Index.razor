@@ -1,0 +1,60 @@
+﻿@page "/"
+@using DocumentFormat.OpenXml.Packaging;
+@using DocumentFormat.OpenXml.Wordprocessing;
+@using DocumentFormat.OpenXml;
+@using System.Text;
+@using System.IO;
+@using docx_lib;
+@inject IJSRuntime JS
+
+<PageTitle>Index</PageTitle>
+
+Select your Docx file. File is processed locally and remains private.
+
+<InputFile OnChange="@LoadFiles" multiple accept='.docx' />
+
+<p> @status</p>
+<p> @text </p>
+
+@code {
+    private string[] files = new string[] { "none selected" };
+    private string status = "";
+
+    private string text = "";
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        status += "\nChanged";
+        try
+        {
+            var buffer = new byte[4096];
+            foreach (IBrowserFile file in e.GetMultipleFiles(e.FileCount))
+            {
+                status += "\nReading file: " + file.Name;
+                _ = InvokeAsync(StateHasChanged);
+
+                var fileStream = new MemoryStream();
+                await file.OpenReadStream(maxAllowedSize: long.MaxValue).CopyToAsync(fileStream);
+
+                var outstream = new MemoryStream();
+                if (file.Name.EndsWith(".docx"))
+                {
+                    DgDocx.docx_to_md(fileStream, outstream);
+                }
+                else
+                {
+                    DgDocx.md_to_docx(fileStream, outstream, null);
+                }
+                using var streamRef = new DotNetStreamReference(stream: outstream);
+                await JS.InvokeVoidAsync("downloadFileFromStream", file.Name + ".md", streamRef);
+            }
+            status = "done";
+        }
+        catch (Exception ex)
+        {
+            status += "\nError: " + ex.Message;
+            _ = InvokeAsync(StateHasChanged);
+        }
+        //var memoryStream = new MemoryStream();
+    }
+}

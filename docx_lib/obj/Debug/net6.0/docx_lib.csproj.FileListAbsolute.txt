@@ -1,0 +1,12 @@
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.csproj.AssemblyReference.cache
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.AssemblyInfoInputs.cache
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.AssemblyInfo.cs
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.csproj.CoreCompileInputs.cache
+/Users/jimhurd/dev/experiments/cli2/docx_lib/bin/Debug/net6.0/docx_lib.deps.json
+/Users/jimhurd/dev/experiments/cli2/docx_lib/bin/Debug/net6.0/docx_lib.dll
+/Users/jimhurd/dev/experiments/cli2/docx_lib/bin/Debug/net6.0/docx_lib.pdb
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.dll
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/refint/docx_lib.dll
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/docx_lib.pdb
+/Users/jimhurd/dev/experiments/cli2/docx_lib/obj/Debug/net6.0/ref/docx_lib.dll
