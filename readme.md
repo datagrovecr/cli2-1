@@ -1,6 +1,6 @@
 
 
-
+```
 mkdir cli2
 cd cli2
 code .
@@ -28,4 +28,4 @@ dotnet publish -c release
 cd bin/Release/net6.0/publish/wwwroot
 surge . mddocx2.surge.sh
 
-https://github.com/imoldfella/cli2
+```
