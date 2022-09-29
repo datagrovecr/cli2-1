@@ -13,15 +13,14 @@ using System.Text;
 public class DgDocx
 {
 
-    public static void md_to_docx(Stream input, Stream output, Stream? template) //String mdFile, String docxFile, String template)
+    public async static Task md_to_docx(Stream input, Stream generatedDocument, Stream? template) //String mdFile, String docxFile, String template)
     {
-        // String md = File.ReadAllText(mdFile);
-        var md = new StreamReader(input).ReadToEnd();
-        var html = Markdown.ToHtml(md);
-        MemoryStream generatedDocument = new MemoryStream();
-
         if (template != null)
             template.CopyTo(generatedDocument);
+
+        var md = new StreamReader(input).ReadToEnd();
+        var html = Markdown.ToHtml(md);
+
 
         generatedDocument.Position = 0L;
         WordprocessingDocument package = WordprocessingDocument.Open(generatedDocument, true);
@@ -39,10 +38,9 @@ public class DgDocx
         mainPart.Document.Save();
 
         AssertThatOpenXmlDocumentIsValid(package);
-        output.WriteAsync(generatedDocument.ToArray());
     }
 
-    public async static void docx_to_md(Stream infile, Stream outfile)
+    public async static Task docx_to_md(Stream infile, Stream outfile)
     {
         WordprocessingDocument wordDoc = WordprocessingDocument.Open(infile, false);
         DocumentFormat.OpenXml.Wordprocessing.Body body

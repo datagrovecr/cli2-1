@@ -43,7 +43,9 @@ Select your Docx file. File is processed locally and remains private.
                 }
                 else
                 {
-                    DgDocx.md_to_docx(fileStream, outstream, null);
+                    var generatedDocument = new MemoryStream();
+                    DgDocx.md_to_docx(fileStream, generatedDocument, null);
+                    //outstream.WriteAsync(generatedDocument.ToArray());
                 }
                 using var streamRef = new DotNetStreamReference(stream: outstream);
                 await JS.InvokeVoidAsync("downloadFileFromStream", file.Name + ".md", streamRef);

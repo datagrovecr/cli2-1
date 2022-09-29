@@ -2,33 +2,31 @@
 
 internal class Program
 {
-
-
-    private static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        var mdFile = "../test.md";
-        var mdFile2 = "../test2.md";
-        var docxFile = mdFile + ".docx";
+        var outdir = "../test_results/";
         var template = "../template.docx";
-        if (File.Exists(docxFile)) File.Delete(docxFile);
 
+        string[] files = Directory.GetFiles("../test_md", "*.md", SearchOption.AllDirectories);
 
-
+        foreach (var mdFile in files)
         {
-            var fileStream = File.Open(mdFile, FileMode.Open);
-            var outStream = File.Open(mdFile + ".docx", FileMode.Create);
-            if (fileStream == null || outStream == null)
+            string root = outdir + Path.GetFileNameWithoutExtension(mdFile);
+            var docxFile = root + ".docx";
             {
-                return;
+                var fileStream = File.Open(mdFile, FileMode.Open);
+                var outStream = File.Open(docxFile, FileMode.Create);
+                var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
+                await DgDocx.md_to_docx(fileStream, outStream, buffer); // template);
+                outStream.Close();
             }
-            var buffer = new FileStream(template, FileMode.Open, FileAccess.Read);
-            DgDocx.md_to_docx(fileStream, outStream, buffer); // template);
-            outStream.Close();
-        }
 
-        var instream = File.Open(docxFile, FileMode.Open);
-        var outstream = File.Open(mdFile2, FileMode.Create);
-        DgDocx.docx_to_md(instream, outstream);
-        // docx_lib.DgDocx.roundTrip(, "../template.docx");
+            {
+                // convert the docx back to markdown.
+                var instream = File.Open(docxFile, FileMode.Open);
+                var outstream = File.Open(root + ".md", FileMode.Create);
+                await DgDocx.docx_to_md(instream, outstream);
+            }
+        }
     }
 }
