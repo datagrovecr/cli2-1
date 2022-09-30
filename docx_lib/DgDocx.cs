@@ -81,7 +81,7 @@ public class DgDocx
             {
                 if (block is Paragraph)
                 {
-                    ProcessParagraph((Paragraph)block, textBuilder);
+                    ProcessRunText((Paragraph)block, textBuilder);
                     textBuilder.AppendLine("");
                 }
 
@@ -117,7 +117,7 @@ public class DgDocx
             {
                 foreach (var para in cell.Descendants<Paragraph>())
                 {
-                    ProcessParagraph(para, textBuilder);
+                    ProcessRunText(para, textBuilder);
                 }
                 textBuilder.Append(" | ");
             }
@@ -125,20 +125,40 @@ public class DgDocx
         }
     }
 
-    private static void ProcessParagraph(Paragraph block, StringBuilder textBuilder)
+    private static void ProcessParagraph(Paragraph block, String prefix)
     {
+        String style = block.ParagraphProperties.ParagraphStyleId.Val;
+        int num;
+        
+        //This is for Heading Paragraphs
+        if (style.Contains("Heading"))
+        {
+            num = int.Parse(style.Substring(style.Length - 1));
+
+            for(int i = 0; i<num; i++)
+            {
+                prefix += "#";
+            }
+        }
+
+
+    }
+
+    private static void ProcessRunText(Paragraph block, StringBuilder textBuilder)
+    {
+        
 
         foreach (var run in block.Descendants<Run>())
         {
             String prefix = "";
-            
 
-
+            Console.WriteLine(run);
 
             if (run.RunProperties != null)
             {
+                
+                //This is just to make the code readable, but I'm extracting if it's bold or italic
                 OpenXmlElement expression = run.RunProperties.ChildElements.ElementAtOrDefault(0);
-
 
 
                 switch (expression)
@@ -156,10 +176,21 @@ public class DgDocx
                         break;
                 }
 
-
+                textBuilder.Append(prefix + run.InnerText + prefix + " ");
+                prefix = "";
             }
-            textBuilder.Append(prefix + run.InnerText + prefix + " ");
-            prefix = "";
+
+            if(block.ParagraphProperties != null)
+            {
+                ProcessParagraph(block, prefix);
+
+                if (prefix.Contains("#"))
+                {
+                    textBuilder.Append(prefix +" "+ run.InnerText);
+                }
+            }
+
+
             //text.GetAttributes();
 
         }
