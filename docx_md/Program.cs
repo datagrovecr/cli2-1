@@ -30,7 +30,7 @@ internal class Program
                     // convert the docx back to markdown.
                     using (var instream = File.Open(docxFile, FileMode.Open)){
                         var outstream = new MemoryStream();
-                        await DgDocx.docx_to_md(instream, outstream,fn+".md");
+                        await DgDocx.docx_to_md(instream, outstream, fn.Replace("_md", ".md"));
                         using (var fileStream = new FileStream(root+".zip", FileMode.Create))
                         {
                             outstream.Seek(0, SeekOrigin.Begin);

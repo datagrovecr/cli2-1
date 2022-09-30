@@ -81,7 +81,7 @@ public class DgDocx
             {
                 if (block is Paragraph)
                 {
-                    ProcessRunText((Paragraph)block, textBuilder);
+                    ProcessBodyElements((Paragraph)block, textBuilder);
                     textBuilder.AppendLine("");
                 }
 
@@ -91,9 +91,7 @@ public class DgDocx
                 }
             }
         }
-
-
-
+        
         using (var archive = new ZipArchive(outfile, ZipArchiveMode.Create, true))
         {
             var demoFile = archive.CreateEntry(name);
@@ -117,7 +115,7 @@ public class DgDocx
             {
                 foreach (var para in cell.Descendants<Paragraph>())
                 {
-                    ProcessRunText(para, textBuilder);
+                    ProcessBodyElements(para, textBuilder);
                 }
                 textBuilder.Append(" | ");
             }
@@ -125,29 +123,61 @@ public class DgDocx
         }
     }
 
-    private static void ProcessParagraph(Paragraph block, String prefix)
+    private static String ProcessParagraph(Paragraph block)
     {
         String style = block.ParagraphProperties.ParagraphStyleId.Val;
         int num;
-        
+        String prefix = "";
+
         //This is for Heading Paragraphs
         if (style.Contains("Heading"))
         {
             num = int.Parse(style.Substring(style.Length - 1));
+            
 
             for(int i = 0; i<num; i++)
             {
                 prefix += "#";
             }
+            return prefix;
+        }
+        if (style == "ListParagraph")
+        {
+            return prefix = "-";
         }
 
-
+        return "";
     }
 
-    private static void ProcessRunText(Paragraph block, StringBuilder textBuilder)
+    private static String ProcessRun(Run run)
+    {
+        //This piece of code wants to extract the child element of the text (Bold or Italic)
+        OpenXmlElement expression = run.RunProperties.ChildElements.ElementAtOrDefault(0);
+
+        String prefix = "";
+
+        //With the expression variable in switch we can know if the propertie is Bold, Italic
+        //or both.
+        switch (expression)
+        {
+            case Bold:
+                if (run.RunProperties.ChildElements.Count == 2)
+                {
+                    prefix = "***";
+                    break;
+                }
+                prefix = "**";
+                break;
+            case Italic:
+                prefix = "*";
+                break;
+        }
+        return prefix;
+    }
+
+    private static void ProcessBodyElements(Paragraph block, StringBuilder textBuilder)
     {
         
-
         foreach (var run in block.Descendants<Run>())
         {
             String prefix = "";
@@ -156,45 +186,22 @@ public class DgDocx
 
             if (run.RunProperties != null)
             {
-                
-                //This is just to make the code readable, but I'm extracting if it's bold or italic
-                OpenXmlElement expression = run.RunProperties.ChildElements.ElementAtOrDefault(0);
-
-
-                switch (expression)
-                {
-                    case Bold:
-                        if (run.RunProperties.ChildElements.Count == 2)
-                        {
-                            prefix += "***";
-                            break;
-                        }
-                        prefix += "**";
-                        break;
-                    case Italic:
-                        prefix += "*";
-                        break;
-                }
-
+                prefix = ProcessRun(run);
                 textBuilder.Append(prefix + run.InnerText + prefix + " ");
-                prefix = "";
             }
 
             if(block.ParagraphProperties != null)
             {
-                ProcessParagraph(block, prefix);
+                prefix = ProcessParagraph(block);
 
-                if (prefix.Contains("#"))
+                if (prefix.Contains("#") || prefix.Contains("-"))
                 {
                     textBuilder.Append(prefix +" "+ run.InnerText);
                 }
             }
 
-
-            //text.GetAttributes();
-
         }
-        textBuilder.Append("\n\n");
+        textBuilder.Append("\n");
     }
 
 
