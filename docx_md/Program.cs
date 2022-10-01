@@ -24,18 +24,24 @@ internal class Program
                     var md =  File.ReadAllText(mdFile);
                     var inputStream = new MemoryStream();
                     await DgDocx.md_to_docx(md, inputStream);
+
+                    //inputStream is writing into the .docx file
                     File.WriteAllBytes(docxFile, inputStream.ToArray());                       
 
 
                     // convert the docx back to markdown.
                     using (var instream = File.Open(docxFile, FileMode.Open)){
                         var outstream = new MemoryStream();
-                        await DgDocx.docx_to_md(instream, outstream, fn.Replace("_md", ".md"));
-                        using (var fileStream = new FileStream(root+".zip", FileMode.Create))
-                        {
-                            outstream.Seek(0, SeekOrigin.Begin);
-                            outstream.CopyTo(fileStream);
-                        }                        
+                        await DgDocx.docx_to_md(instream, outstream, root);//Previous: instream, outstream, fn.Replace("_md", "")
+
+
+                        //The commented code is for .zip files
+
+                        //using (var fileStream = new FileStream(root+".md", FileMode.Create))
+                        //{
+                        //    outstream.Seek(0, SeekOrigin.Begin);
+                        //    outstream.CopyTo(fileStream);
+                        //}                        
                     }
                 }catch (Exception e)
                 {

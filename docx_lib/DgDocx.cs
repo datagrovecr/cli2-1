@@ -38,6 +38,7 @@ public class DgDocx
     {
         var html = Markdown.ToHtml(md);
 
+        //All the document is being saved in the stream
         using (WordprocessingDocument doc = WordprocessingDocument.Create(inputStream, WordprocessingDocumentType.Document, true))
         {
             MainDocumentPart mainPart = doc.AddMainDocumentPart();
@@ -72,6 +73,7 @@ public class DgDocx
         DocumentFormat.OpenXml.Wordprocessing.Body body
         = wordDoc.MainDocumentPart.Document.Body;
 
+
         StringBuilder textBuilder = new StringBuilder();
         var parts = wordDoc.MainDocumentPart.Document.Descendants().FirstOrDefault();
         StyleDefinitionsPart styleDefinitionsPart = wordDoc.MainDocumentPart.StyleDefinitionsPart;
@@ -81,7 +83,8 @@ public class DgDocx
             {
                 if (block is Paragraph)
                 {
-                    ProcessBodyElements((Paragraph)block, textBuilder);
+                    //This method is for manipulating the style of Paragraphs and text inside
+                    ProcessParagraph((Paragraph)block, textBuilder);
                     textBuilder.AppendLine("");
                 }
 
@@ -91,19 +94,30 @@ public class DgDocx
                 }
             }
         }
-        
-        using (var archive = new ZipArchive(outfile, ZipArchiveMode.Create, true))
+
+        //This code is replacing the above one because I need to check the .md file faster
+        //writing the .md file in test_result folder
+        using (var streamWriter = new StreamWriter(name + ".md"))
         {
-            var demoFile = archive.CreateEntry(name);
-            using (var entryStream = demoFile.Open())
-            {
-                using (var streamWriter = new StreamWriter(entryStream))
-                {
-                    String s = textBuilder.ToString();
-                    streamWriter.Write(s);
-                }
-            }
+            String s = textBuilder.ToString();
+            streamWriter.Write(s);
         }
+
+
+        //commented code is for .zip files
+
+        //using (var archive = new ZipArchive(outfile, ZipArchiveMode.Create, true))
+        //{
+        //    var demoFile = archive.CreateEntry(name);
+        //    using (var entryStream = demoFile.Open())
+        //    {
+        //        using (var streamWriter = new StreamWriter(entryStream))
+        //        {
+        //            String s = textBuilder.ToString();
+        //            streamWriter.Write(s);
+        //        }
+        //    }
+        //}
     }
 
     private static void ProcessTable(Table node, StringBuilder textBuilder)
@@ -115,7 +129,7 @@ public class DgDocx
             {
                 foreach (var para in cell.Descendants<Paragraph>())
                 {
-                    ProcessBodyElements(para, textBuilder);
+                    ProcessParagraph(para, textBuilder);
                 }
                 textBuilder.Append(" | ");
             }
@@ -123,13 +137,13 @@ public class DgDocx
         }
     }
 
-    private static String ProcessParagraph(Paragraph block)
+    private static String ProcessParagraphElements(Paragraph block)
     {
         String style = block.ParagraphProperties.ParagraphStyleId.Val;
         int num;
         String prefix = "";
 
-        //This is for Heading Paragraphs
+        //to find which block have Heading Paragraphs
         if (style.Contains("Heading"))
         {
             num = int.Parse(style.Substring(style.Length - 1));
@@ -141,23 +155,24 @@ public class DgDocx
             }
             return prefix;
         }
+
+        //to find which block have List Paragraphs
         if (style == "ListParagraph")
         {
             return prefix = "-";
         }
 
-        return "";
+        return null;
     }
 
-    private static String ProcessRun(Run run)
+    private static String ProcessRunElements(Run run)
     {
-        //This piece of code wants to extract the child element of the text (Bold or Italic)
+        //extract the child element of the text (Bold or Italic)
         OpenXmlElement expression = run.RunProperties.ChildElements.ElementAtOrDefault(0);
 
         String prefix = "";
 
-        //With the expression variable in switch we can know if the propertie is Bold, Italic
-        //or both.
+        //to know if the propertie is Bold, Italic or both
         switch (expression)
         {
             case Bold:
@@ -172,27 +187,36 @@ public class DgDocx
                 prefix = "*";
                 break;
         }
-        return prefix;
+        if(prefix != "")
+        {
+            return prefix;
+        }
+        else
+        {
+            return null;
+        }
+        
     }
 
-    private static void ProcessBodyElements(Paragraph block, StringBuilder textBuilder)
+
+    private static void ProcessParagraph(Paragraph block, StringBuilder textBuilder)
     {
-        
+        //iterate along every element in the Paragraphs and childrens
         foreach (var run in block.Descendants<Run>())
         {
             String prefix = "";
 
-            Console.WriteLine(run);
-
+            // fonts, size letter, links
             if (run.RunProperties != null)
             {
-                prefix = ProcessRun(run);
+                prefix = ProcessRunElements(run);
                 textBuilder.Append(prefix + run.InnerText + prefix + " ");
             }
 
+            //general style, lists, aligment, spacing
             if(block.ParagraphProperties != null)
             {
-                prefix = ProcessParagraph(block);
+                prefix = ProcessParagraphElements(block);
 
                 if (prefix.Contains("#") || prefix.Contains("-"))
                 {
