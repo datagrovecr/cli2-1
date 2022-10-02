@@ -85,7 +85,6 @@ public class DgDocx
                 {
                     //This method is for manipulating the style of Paragraphs and text inside
                     ProcessParagraph((Paragraph)block, textBuilder);
-                    textBuilder.AppendLine("");
                 }
 
                 if (block is Table)
@@ -187,44 +186,45 @@ public class DgDocx
                 prefix = "*";
                 break;
         }
-        if(prefix != "")
-        {
-            return prefix;
-        }
-        else
-        {
-            return null;
-        }
-        
+        return prefix;
     }
 
 
     private static void ProcessParagraph(Paragraph block, StringBuilder textBuilder)
     {
+        String constructorBase = "";
+
         //iterate along every element in the Paragraphs and childrens
         foreach (var run in block.Descendants<Run>())
         {
             String prefix = "";
 
+            if (run.InnerText != "")
+            {
+                constructorBase += run.InnerText;
+            }
+
             // fonts, size letter, links
             if (run.RunProperties != null)
             {
                 prefix = ProcessRunElements(run);
-                textBuilder.Append(prefix + run.InnerText + prefix + " ");
+                constructorBase += prefix + constructorBase + prefix;
             }
 
             //general style, lists, aligment, spacing
-            if(block.ParagraphProperties != null)
+            if (block.ParagraphProperties != null)
             {
                 prefix = ProcessParagraphElements(block);
 
                 if (prefix.Contains("#") || prefix.Contains("-"))
                 {
-                    textBuilder.Append(prefix +" "+ run.InnerText);
+                    constructorBase += prefix + " " + constructorBase;
                 }
             }
-
+            textBuilder.Append(constructorBase);
+            constructorBase = "";
         }
+        
         textBuilder.Append("\n");
     }
 
