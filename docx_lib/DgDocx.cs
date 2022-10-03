@@ -142,7 +142,7 @@ public class DgDocx
         int num;
         String prefix = "";
 
-        //to find which block have Heading Paragraphs
+        //to find Heading Paragraphs
         if (style.Contains("Heading"))
         {
             num = int.Parse(style.Substring(style.Length - 1));
@@ -155,10 +155,16 @@ public class DgDocx
             return prefix;
         }
 
-        //to find which block have List Paragraphs
+        //to find List Paragraphs
         if (style == "ListParagraph")
         {
             return prefix = "-";
+        }
+
+        //to find quotes Paragraphs
+        if (style == "IntenseQuote")
+        {
+            return prefix = ">";
         }
 
         return null;
@@ -189,6 +195,19 @@ public class DgDocx
         return prefix;
     }
 
+    private static String ProcessBlockQuote(Run block)
+    {
+        String text = block.InnerText;
+        String[] textSliced = text.Split("\n");
+        String textBack = "";
+
+        foreach(String n in textSliced)
+        {
+            textBack += "> "+n+"\n";
+        }
+
+        return textBack;
+    }
 
     private static void ProcessParagraph(Paragraph block, StringBuilder textBuilder)
     {
@@ -220,12 +239,17 @@ public class DgDocx
                 {
                     constructorBase = prefix + " " + constructorBase;
                 }
+                if (prefix.Contains(">"))
+                {
+                    constructorBase = ProcessBlockQuote(run);
+                }
+
             }
             textBuilder.Append(constructorBase);
             constructorBase = "";
         }
         
-        textBuilder.Append("\n");
+        textBuilder.Append("\n\n");
     }
 
 
