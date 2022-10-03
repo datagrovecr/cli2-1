@@ -201,14 +201,14 @@ public class DgDocx
 
             if (run.InnerText != "")
             {
-                constructorBase += run.InnerText;
+                constructorBase = run.InnerText;
             }
 
             // fonts, size letter, links
             if (run.RunProperties != null)
             {
                 prefix = ProcessRunElements(run);
-                constructorBase += prefix + constructorBase + prefix;
+                constructorBase = prefix + constructorBase + prefix;
             }
 
             //general style, lists, aligment, spacing
@@ -218,7 +218,7 @@ public class DgDocx
 
                 if (prefix.Contains("#") || prefix.Contains("-"))
                 {
-                    constructorBase += prefix + " " + constructorBase;
+                    constructorBase = prefix + " " + constructorBase;
                 }
             }
             textBuilder.Append(constructorBase);
