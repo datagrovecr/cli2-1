@@ -10,7 +10,6 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using HtmlToOpenXml;
 using System.Text;
 using System.IO.Compression;
-
 public class DgDocx
 {
 
@@ -36,7 +35,9 @@ public class DgDocx
     // stream here because anticipating zip.
     public async static Task md_to_docx(String md, Stream inputStream, bool debug = false) //String mdFile, String docxFile, String template)
     {
-        var html = Markdown.ToHtml(md);
+        MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+
+        var html = Markdown.ToHtml(md, pipeline);
 
         //All the document is being saved in the stream
         using (WordprocessingDocument doc = WordprocessingDocument.Create(inputStream, WordprocessingDocumentType.Document, true))
