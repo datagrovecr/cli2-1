@@ -129,7 +129,7 @@ public class DgDocx
             {
                 foreach (var para in cell.Descendants<Paragraph>())
                 {
-                    ProcessParagraph(para, textBuilder);
+                    textBuilder.Append(para.InnerText);
                 }
                 textBuilder.Append(" | ");
             }

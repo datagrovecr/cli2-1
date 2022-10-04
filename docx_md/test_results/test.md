@@ -1,10 +1,3 @@
-| a
-
- | b
-
- | 
-| 0
-
- | 1
-
- | 
+| Syntax | Description | 
+| Header | Title | 
+| Paragraph | Text | 
