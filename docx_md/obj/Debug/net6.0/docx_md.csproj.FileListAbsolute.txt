@@ -64,3 +64,4 @@
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_md/obj/Debug/net6.0/docx_md.pdb
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_md/obj/Debug/net6.0/docx_md.genruntimeconfig.cache
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_md/obj/Debug/net6.0/ref/docx_md.dll
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_md/bin/Debug/net6.0/HtmlToOpenXml.xml

@@ -34,3 +34,6 @@
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/refint/docx_lib.dll
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.pdb
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/ref/docx_lib.dll
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/bin/Debug/net6.0/HtmlToOpenXml.dll
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/bin/Debug/net6.0/HtmlToOpenXml.xml
+/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.csproj.CopyComplete

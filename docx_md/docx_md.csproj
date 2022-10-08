@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <None Remove="test_results\" />
+    <None Remove="DocumentFormat.OpenXml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test_results\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>

@@ -25,7 +25,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/fabianvalverde/Documents/GitHub/html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj": {
+                "projectPath": "/Users/fabianvalverde/Documents/GitHub/html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -38,13 +42,13 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.18.0, )"
+            },
             "Markdig": {
               "target": "Package",
               "version": "[0.30.4, )"
-            },
-            "NS.HtmlToOpenXml": {
-              "target": "Package",
-              "version": "[1.1.0, )"
             }
           },
           "imports": [
@@ -104,6 +108,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.18.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -120,6 +130,109 @@
               "privateAssets": "all"
             }
           },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/fabianvalverde/Documents/GitHub/html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj": {
+      "version": "2.3.0",
+      "restore": {
+        "projectUniqueName": "/Users/fabianvalverde/Documents/GitHub/html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj",
+        "projectName": "HtmlToOpenXml.dll",
+        "projectPath": "/Users/fabianvalverde/Documents/GitHub/html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj",
+        "packagesPath": "/Users/fabianvalverde/.nuget/packages/",
+        "outputPath": "/Users/fabianvalverde/Documents/GitHub/html2openxml/src/Html2OpenXml/obj/",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "/Users/fabianvalverde/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard1.3",
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard1.3": {
+            "targetAlias": "netstandard1.3",
+            "projectReferences": {}
+          },
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard1.3": {
+          "targetAlias": "netstandard1.3",
+          "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.15.0, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "NETStandard.Library": {
+              "target": "Package",
+              "version": "[1.6.1, )",
+              "autoReferenced": true
+            },
+            "System.Diagnostics.TraceSource": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+        },
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.15.0, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Diagnostics.TraceSource": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
           "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
         }
       }
