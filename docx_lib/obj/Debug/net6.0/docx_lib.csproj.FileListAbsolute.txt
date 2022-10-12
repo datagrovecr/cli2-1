@@ -37,3 +37,15 @@
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/bin/Debug/net6.0/HtmlToOpenXml.dll
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/bin/Debug/net6.0/HtmlToOpenXml.xml
 /Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib.csproj.CopyComplete
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\bin\Debug\net6.0\docx_lib.deps.json
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\bin\Debug\net6.0\docx_lib.dll
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\bin\Debug\net6.0\docx_lib.pdb
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.csproj.AssemblyReference.cache
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.AssemblyInfoInputs.cache
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.AssemblyInfo.cs
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.csproj.CoreCompileInputs.cache
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.dll
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\refint\docx_lib.dll
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.pdb
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\ref\docx_lib.dll

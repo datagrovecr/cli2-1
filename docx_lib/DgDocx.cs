@@ -95,7 +95,7 @@ public class DgDocx
             }
         }
 
-        //This code is replacing the above one because I need to check the .md file faster
+        //This code is replacing the below one because I need to check the .md file faster
         //writing the .md file in test_result folder
         using (var streamWriter = new StreamWriter(name + ".md"))
         {

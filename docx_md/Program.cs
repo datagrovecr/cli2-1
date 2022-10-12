@@ -3,13 +3,14 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Validation;
 using DocumentFormat.OpenXml.Wordprocessing;
+using System.IO.Compression;
 
 internal class Program
 {
     static async Task Main(string[] args)
     {
-        var outdir = "/Users/fabianvalverde/Documents/GitHub/cli2/docx_md/test_results/";
-        string[] files = Directory.GetFiles("/Users/fabianvalverde/Documents/GitHub/cli2/docx_md/folder_Tests", "*.md", SearchOption.TopDirectoryOnly);
+        var outdir = "C:/Users/Fabia/OneDrive/Documents/GitHub/cli2/docx_md/test_results/";
+        string[] files = Directory.GetFiles("C:/Users/Fabia/OneDrive/Documents/GitHub/cli2/docx_md/folder_tests/", "*.md", SearchOption.TopDirectoryOnly);
 
         foreach (var mdFile in files)
         {
@@ -34,7 +35,6 @@ internal class Program
                         var outstream = new MemoryStream();
                         await DgDocx.docx_to_md(instream, outstream, root);//Previous: instream, outstream, fn.Replace("_md", "")
 
-
                         //The commented code is for .zip files
 
                         //using (var fileStream = new FileStream(root+".md", FileMode.Create))
@@ -43,7 +43,12 @@ internal class Program
                         //    outstream.CopyTo(fileStream);
                         //}                        
                     }
-                }catch (Exception e)
+                    using (ZipArchive archive = ZipFile.OpenRead(outdir + "test.docx"))
+                    {
+                        archive.ExtractToDirectory(outdir + "test.unzipped", true);
+                    }
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine($"{mdFile} failed {e}");
                 }
