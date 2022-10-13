@@ -10,6 +10,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using HtmlToOpenXml;
 using System.Text;
 using System.IO.Compression;
+using System.Linq.Expressions;
+using DocumentFormat.OpenXml.EMMA;
+
 public class DgDocx
 {
 
@@ -122,13 +125,31 @@ public class DgDocx
 
     private static void ProcessTable(Table node, StringBuilder textBuilder)
     {
+        List<string> headerDivision = new List<string>();
+        int rowNumber = 0;
+
         foreach (var row in node.Descendants<TableRow>())
         {
+            rowNumber++;
+            
+            if(rowNumber == 2)
+            {
+                headerDivider(headerDivision, textBuilder);
+            }
+
             textBuilder.Append("| ");
             foreach (var cell in row.Descendants<TableCell>())
             {
                 foreach (var para in cell.Descendants<Paragraph>())
                 {
+                    if(para.ParagraphProperties != null)
+                    {
+                        headerDivision.Add(para.ParagraphProperties.Justification.Val);
+                    }
+                    else
+                    {
+                        headerDivision.Add("normal");
+                    }
                     textBuilder.Append(para.InnerText);
                 }
                 textBuilder.Append(" | ");
@@ -253,7 +274,33 @@ public class DgDocx
         textBuilder.Append("\n\n");
     }
 
+    private static void headerDivider(List<String> align, StringBuilder textBuilder)
+    {
+        textBuilder.Append("|");
+        foreach (var column in align)
+        {
+            switch (column)
+            {
+                case "left":
+                    textBuilder.Append(":---|");
+                    break;
 
+                case "center":
+                    textBuilder.Append(":---:|");
+                    break;
+
+                case "right":
+                    textBuilder.Append("---:|");
+                    break;
+
+                case "normal":
+                    textBuilder.Append("---|");
+                    break;
+            }
+        }
+        textBuilder.AppendLine("");
+
+    }
 
 
 }

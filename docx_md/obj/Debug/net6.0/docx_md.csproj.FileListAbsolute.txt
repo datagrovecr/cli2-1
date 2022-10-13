@@ -87,3 +87,4 @@ C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_md\obj\Debug\net6.0\refint\do
 C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_md\obj\Debug\net6.0\docx_md.pdb
 C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_md\obj\Debug\net6.0\docx_md.genruntimeconfig.cache
 C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_md\obj\Debug\net6.0\ref\docx_md.dll
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_md\bin\Debug\net6.0\HtmlToOpenXml.xml

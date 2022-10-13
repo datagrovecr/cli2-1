@@ -49,3 +49,6 @@ C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib
 C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\refint\docx_lib.dll
 C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.pdb
 C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\ref\docx_lib.dll
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\bin\Debug\net6.0\HtmlToOpenXml.dll
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\bin\Debug\net6.0\HtmlToOpenXml.xml
+C:\Users\Fabia\OneDrive\Documents\GitHub\cli2\docx_lib\obj\Debug\net6.0\docx_lib.csproj.CopyComplete

@@ -1,7 +1,6 @@
 ## Development
 
-hello hello
-
-this is working welland really reallywell...
-and then not
-
+| Syntax | Description | Test Text | 
+|---|:---:|---:|
+| new | Title | Here's this | 
+| Paragraph | Text | And more | 
