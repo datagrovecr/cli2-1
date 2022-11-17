@@ -18,7 +18,6 @@ internal class Program
             string fn = Path.GetFileNameWithoutExtension(mdFile);
             string root = outdir + fn.Replace("_md", "");
             var docxFile = root + ".docx";
-            {
                 try
                 {
                    // markdown to docx
@@ -52,9 +51,6 @@ internal class Program
                 {
                     Console.WriteLine($"{mdFile} failed {e}");
                 }
-                
-            }
-          
         }
     }
 

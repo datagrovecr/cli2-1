@@ -1303,8 +1303,8 @@
     },
     "HtmlToOpenXml.dll/2.3.0": {
       "type": "project",
-      "path": "../../html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj",
-      "msbuildProject": "../../html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj"
+      "path": "../Html2OpenXml/HtmlToOpenXml.csproj",
+      "msbuildProject": "../Html2OpenXml/HtmlToOpenXml.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1346,8 +1346,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\HtmlToOpenXml.csproj": {
-              "projectPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\HtmlToOpenXml.csproj"
+            "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\HtmlToOpenXml.csproj": {
+              "projectPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\HtmlToOpenXml.csproj"
             }
           }
         }

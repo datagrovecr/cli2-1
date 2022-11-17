@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\html2openxml\src\Html2OpenXml\HtmlToOpenXml.csproj" />
+    <ProjectReference Include="..\Html2OpenXml\HtmlToOpenXml.csproj" />
   </ItemGroup>
 </Project>

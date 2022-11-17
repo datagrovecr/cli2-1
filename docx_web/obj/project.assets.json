@@ -3718,8 +3718,8 @@
     },
     "HtmlToOpenXml.dll/2.3.0": {
       "type": "project",
-      "path": "../../html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj",
-      "msbuildProject": "../../html2openxml/src/Html2OpenXml/HtmlToOpenXml.csproj"
+      "path": "../Html2OpenXml/HtmlToOpenXml.csproj",
+      "msbuildProject": "../Html2OpenXml/HtmlToOpenXml.csproj"
     }
   },
   "projectFileDependencyGroups": {

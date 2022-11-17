@@ -49,7 +49,7 @@ public class DgDocx
 
             // Create the document structure and add some text.
             mainPart.Document = new Document();
-            Body body = mainPart.Document.AppendChild(new Body());
+/*            Body body = mainPart.Document.AppendChild(new Body());
 
             if (debug) {
                 {
@@ -63,7 +63,7 @@ public class DgDocx
                     Run run2 = para2.AppendChild(new Run());
                     run2.AppendChild(new Text("Html: " + html));
                 }
-            }
+            }*/
 
             HtmlConverter converter = new HtmlConverter(mainPart);
             converter.ParseHtml(html);

@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\HtmlToOpenXml.csproj": {
-                "projectPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\HtmlToOpenXml.csproj"
+              "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\HtmlToOpenXml.csproj": {
+                "projectPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\HtmlToOpenXml.csproj"
               }
             }
           }
@@ -146,14 +146,14 @@
         }
       }
     },
-    "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\HtmlToOpenXml.csproj": {
+    "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\HtmlToOpenXml.csproj": {
       "version": "2.3.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\HtmlToOpenXml.csproj",
+        "projectUniqueName": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\HtmlToOpenXml.csproj",
         "projectName": "HtmlToOpenXml.dll",
-        "projectPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\HtmlToOpenXml.csproj",
+        "projectPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\HtmlToOpenXml.csproj",
         "packagesPath": "C:\\Users\\Fabia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\html2openxml\\src\\Html2OpenXml\\obj\\",
+        "outputPath": "C:\\Users\\Fabia\\OneDrive\\Documents\\GitHub\\cli2\\Html2OpenXml\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
