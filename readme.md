@@ -15,11 +15,11 @@ cd ..
 dotnet new console -o docx_md
 dotnet new blazorwasm -o docx_web
 
-dotnet sln add docx_md/docx_md.csproj
+dotnet sln add office_convert/office_convert.csproj
 dotnet sln add docx_web/docx_web.csproj 
 dotnet sln add docx_lib/docx_lib.csproj 
 
-dotnet add docx_md/docx_md.csproj reference docx_lib/docx_lib.csproj
+dotnet add office_convert/office_convert.csproj reference docx_lib/docx_lib.csproj
 
 dotnet add docx_web/docx_web.csproj reference docx_lib/docx_lib.csproj
 
