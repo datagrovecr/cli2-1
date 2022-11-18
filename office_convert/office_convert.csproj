@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.0-preview-20221110-04" />
 
   </ItemGroup>
 

@@ -4,7 +4,7 @@
 @using DocumentFormat.OpenXml;
 @using System.Text;
 @using System.IO;
-@using docx_lib;
+@using Datagrove;
 @inject IJSRuntime JS
 
 <PageTitle>Index</PageTitle>
@@ -40,7 +40,9 @@ Select your Docx file. File is processed locally and remains private.
                     {
                         md = await reader.ReadToEndAsync();
                     }
-                    await DgDocx.md_to_docx(md, temp);
+                    //await DgConvert.md_to_docx(md, temp);
+                  
+
                     outstream.Write(temp.ToArray());
                 } else {
                     // covert docx file to zip/md.
@@ -48,7 +50,7 @@ Select your Docx file. File is processed locally and remains private.
                     var fileStream = new MemoryStream();
                     await str.CopyToAsync(fileStream);
                     status += "\ndocx file";
-                    await DgDocx.docx_to_md(fileStream, outstream,download_name+".md");
+                    //await DgConvert.docx_to_md(fileStream, outstream,download_name+".md");
                     download_name += ".zip";
                 }
 

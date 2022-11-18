@@ -53,6 +53,14 @@
             "Markdig": {
               "target": "Package",
               "version": "[0.30.4, )"
+            },
+            "Parquet.Net": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "YamlDotNet": {
+              "target": "Package",
+              "version": "[12.0.2, )"
             }
           },
           "imports": [

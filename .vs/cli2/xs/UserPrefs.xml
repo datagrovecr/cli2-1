@@ -1,30 +1,20 @@
-﻿<Properties StartupConfiguration="{6680E411-7050-4FE2-B9F3-92AD5BC48260}|Default">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/DgDocx.cs" relfile="docx_lib/DgDocx.cs" line="185" column="1" />
-      <Breakpoint file="/Users/fabianvalverde/Documents/GitHub/cli2/docx_lib/DgDocx.cs" relfile="docx_lib/DgDocx.cs" line="40" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+﻿<Properties StartupConfiguration="{5EBE7CCA-CC3A-46E2-8D85-A8DDA97F1748}|Default">
+  <MonoDevelop.Ide.ItemProperties.docx__md PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="docx_lib/DgDocx.cs">
+  <MonoDevelop.Ide.ItemProperties.docx__web PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="office_convert/Program.cs">
     <Files>
-      <File FileName="docx_md/Program.cs" Line="36" Column="1" />
-      <File FileName="docx_lib/DgDocx.cs" Line="40" Column="1" />
+      <File FileName="office_convert/Program.cs" Line="52" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="cli2" expanded="True">
-            <Node name="docx_lib" expanded="True">
-              <Node name="DgDocx.cs" selected="True" />
-            </Node>
-            <Node name="docx_md" expanded="True">
-              <Node name="folder_tests" expanded="True" />
-            </Node>
+            <Node name="docx_lib" expanded="True" />
             <Node name="docx_web" expanded="True">
               <Node name="Pages" expanded="True" />
             </Node>
+            <Node name="office_convert" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -33,7 +23,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/jim/dev/help/cli2-1/docx_lib/DgDocx.cs" relfile="docx_lib/DgDocx.cs" line="185" column="1" />
+      <Breakpoint file="/Users/jim/dev/help/cli2-1/docx_lib/DgDocx.cs" relfile="docx_lib/DgDocx.cs" line="40" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.docx__md PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.ItemProperties.docx__web PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

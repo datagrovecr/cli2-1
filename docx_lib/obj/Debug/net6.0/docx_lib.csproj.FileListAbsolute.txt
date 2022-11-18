@@ -60,3 +60,10 @@ C:/Users/Fabia/OneDrive/Documents/GitHub/cli2/docx_lib/obj/Debug/net6.0/docx_lib
 /Users/jim/dev/help/cli2-1/docx_lib/obj/Debug/net6.0/docx_lib.dll
 /Users/jim/dev/help/cli2-1/docx_lib/obj/Debug/net6.0/refint/docx_lib.dll
 /Users/jim/dev/help/cli2-1/docx_lib/obj/Debug/net6.0/docx_lib.pdb
+/Users/jim/dev/help/cli2-1/docx_lib/bin/Debug/net6.0/docx_lib.deps.json
+/Users/jim/dev/help/cli2-1/docx_lib/bin/Debug/net6.0/docx_lib.dll
+/Users/jim/dev/help/cli2-1/docx_lib/bin/Debug/net6.0/docx_lib.pdb
+/Users/jim/dev/help/cli2-1/docx_lib/bin/Debug/net6.0/HtmlToOpenXml.dll
+/Users/jim/dev/help/cli2-1/docx_lib/bin/Debug/net6.0/HtmlToOpenXml.xml
+/Users/jim/dev/help/cli2-1/docx_lib/obj/Debug/net6.0/docx_lib.csproj.CopyComplete
+/Users/jim/dev/help/cli2-1/docx_lib/obj/Debug/net6.0/ref/docx_lib.dll

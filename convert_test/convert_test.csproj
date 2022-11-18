@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.30.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.0.0-preview-20221110-04" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.0-preview-20221110-04" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    <PackageReference Include="NS.HtmlToOpenXml" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\office_convert\office_convert.csproj" />
+  </ItemGroup>
+
+</Project>
