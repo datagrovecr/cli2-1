@@ -21,63 +21,8 @@ using YamlDotNet;
 using YamlDotNet.Helpers;
 using YamlDotNet.Serialization;
 
-using AngleSharp;
-using AngleSharp.Html;
+
 using YamlDotNet.Serialization.NamingConventions;
-using AngleSharp.Html.Dom;
-using AngleSharp.Dom;
-using AngleSharp.Css;
-
-public partial class ConversionJob
-{
-
-    AngleSharp.Dom.IDocument parseHtml(string html)
-    {
-        var config = Configuration.Default.WithCss();
-        var context = BrowsingContext.New(config);
-
-        //var parser = new AngleSharp.Html.Parser.HtmlParser();
-        var document = parser.ParseDocument(html);
-        return document;
-    }
-    Chunk h2c(IHtmlElement e, ComputedStyle st)
-    {
-        string tag = e.TagName;
-        return new Chunk(e, st.style());
-    }
-
-    public async Task md_pptx(string html)
-    {
-        using (Stream ts = fs.outputStream())
-        {
-
-
-            await fs.commit(System.IO.Path.ChangeExtension(input, ".docx"), ts);
-        }
-    }
-
-    public async Task md_docx(string html)
-    {
-        using (var dm = parseHtml(html))
-            if (dm.Body != null)
-            {
-                using (Stream ts = fs.outputStream())
-                {
-                    var ws = new WordStyle(ts);
-                    ws.read(dm);
-                    ws.write();
-
-                    // HtmlConverter converter = new HtmlConverter(mainPart);
-                    // converter.ParseHtml(html);
-
-                    await fs.commit(Path.ChangeExtension(input, ".docx"), ts);
-                }
-
-            }
-    }
-}
-
-
 
 public class Style
 {
@@ -93,75 +38,73 @@ public class ComputedStyle
     {
         return new Style();
     }
-    public Chunk read(IHtmlElement e){
-        return new Chunk(e,style());
-    }
-    public void read(IDocument doc)
+    public Chunk read1(Vnode e)
     {
-        var body = doc.Body;
-    
-        if (body!=null) {
-            root = read(body);
-        }
+        return new Chunk(e, style());
     }
-}
-class PowerpointStyle : ComputedStyle
-{
-    PresentationDocument doc;
-
-
-    public PowerpointStyle(Stream ts)
+    public void read(Vnode doc)
     {
-        using (var docx = PresentationDocument.Create(ts, PresentationDocumentType.Presentation))
-        {
-            var mainPart = docx.AddPresentationPart();
-            mainPart.Presentation = new Presentation();
-            mainPart.Presentation.Save();
-        }
-    }
-
-    public void write()
-    {
-
 
     }
 }
+
 class WordStyle : ComputedStyle
 {
-    WordprocessingDocument doc;
-    MainDocumentPart mainPart;
-    Stream ts;
-
-    public WordStyle(Stream ts)
+    static public void Write(Vnode v, Stream ts)
     {
-        this.ts = ts;
-        doc = WordprocessingDocument.Create(ts, WordprocessingDocumentType.Document, true);
-        mainPart = doc.AddMainDocumentPart();
+        var ws = new WordStyle();
+        ws.read(v);
+        var doc = WordprocessingDocument.Create(ts, WordprocessingDocumentType.Document, true);
+        var mainPart = doc.AddMainDocumentPart();
         mainPart.Document = new DocumentFormat.OpenXml.Wordprocessing.Document();
-    }
-    public void write()
-    {
+
+
+        Run run = new Run();
+        RunProperties runProperties = new RunProperties();
+
+        runProperties.AppendChild<Underline>(new Underline() { Val = DocumentFormat.OpenXml.Wordprocessing.UnderlineValues.Single });
+        runProperties.AppendChild<Bold>(new Bold());
+        run.AppendChild<RunProperties>(runProperties);
+        run.AppendChild(new Text("test"));
+
+        //Note: I had to create a paragraph element to place the run into.
+        Paragraph p = new Paragraph();
+        p.AppendChild(run);
+        doc.MainDocumentPart.Document.Body.AppendChild(p);
+
+
+
+
         mainPart.Document.Save();
+
+
     }
 }
 
 public class Span
 {
-
+    String text;
+    Style style;
+    Span(String text, Style style)
+    {
+        this.text = text;
+        this.style = style;
+    }
 }
 public class Chunk
 {
-    public IHtmlElement e;
+    public Vnode e;
     public Style style;
-    public Chunk(IHtmlElement e, Style style)
+    public Chunk(Vnode e, Style style)
     {
         this.e = e;
         this.style = style;
 
-        e.com
-        foreach (var c in e.Children){
+        if (e.children != null)
+            foreach (var c in e.children)
+            {
 
-        }
+            }
     }
     public List<Span> span = new List<Span>();
     public List<Chunk> block = new List<Chunk>();

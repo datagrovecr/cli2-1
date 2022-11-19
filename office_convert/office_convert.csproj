@@ -5,6 +5,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.17.1" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.0.0-preview-20221110-04" />
 

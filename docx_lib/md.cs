@@ -7,43 +7,6 @@ using System.Linq;
 using YamlDotNet.Serialization;
 
 
-public partial class ConversionJob
-
-
-    // this will 
-    public async Task md()
-    {
-        MarkdownPipeline pipeline = new MarkdownPipelineBuilder()
-            .UseYamlFrontMatter()
-            .UseAdvancedExtensions()
-            .UseCustomContainers()
-            .UseEmphasisExtras()
-            .UseGridTables()
-            .UseMediaLinks()
-            .UsePipeTables()
-            .UseGenericAttributes()
-            .Build();
-        var mdb = await fs.Read(input);
-        var md = Encoding.UTF8.GetString(mdb    );
-        var x = md.GetFrontMatter<FrontMatter>();
-        bool marp= x?.Marp??false;   // marp: true
-
-        // how do I get the front matter here?
-        var document = Markdown.Parse(md, pipeline);
-        var html = Markdown.ToHtml(md, pipeline);
-        byte[] bytes = Encoding.UTF8.GetBytes(html);
-        if (marp){
-            await md_pptx(html);
-        } else {
-            await md_docx(html);
-        }
-
-        //All the document is being saved in the stream
-
-    }
-
-}
-
 // https://khalidabuhakmeh.com/parse-markdown-front-matter-with-csharp
 public class FrontMatter
 {
@@ -53,12 +16,12 @@ public class FrontMatter
 
 public static class MarkdownExtensions
 {
-    private static readonly IDeserializer YamlDeserializer = 
+    private static readonly IDeserializer YamlDeserializer =
         new DeserializerBuilder()
         .IgnoreUnmatchedProperties()
         .Build();
-    
-    private static readonly MarkdownPipeline Pipeline 
+
+    private static readonly MarkdownPipeline Pipeline
         = new MarkdownPipelineBuilder()
         .UseYamlFrontMatter()
         .Build();
@@ -79,8 +42,52 @@ public static class MarkdownExtensions
             .Select(x => x.Replace("---", string.Empty))
             .Where(x => !string.IsNullOrWhiteSpace(x))
             .Aggregate((s, agg) => agg + s);
-        if (yaml==null) return default;
+        if (yaml == null) return default;
         return YamlDeserializer.Deserialize<T>(yaml);
+    }
+}
+
+public partial class ConversionJob
+{
+    // this will 
+    public async Task md()
+    {
+        MarkdownPipeline pipeline = new MarkdownPipelineBuilder()
+            .UseYamlFrontMatter()
+            .UseAdvancedExtensions()
+            .UseCustomContainers()
+            .UseEmphasisExtras()
+            .UseGridTables()
+            .UseMediaLinks()
+            .UsePipeTables()
+            .UseGenericAttributes()
+            .Build();
+        var mdb = await fs.Read(input);
+        var md = Encoding.UTF8.GetString(mdb);
+        var x = md.GetFrontMatter<FrontMatter>();
+        bool marp = x?.Marp ?? false;   // marp: true
+
+        // how do I get the front matter here?
+        var document = Markdown.Parse(md, pipeline);
+        var html = Markdown.ToHtml(md, pipeline);
+        var v = ps.parse(html);
+        byte[] bytes = Encoding.UTF8.GetBytes(html);
+        using (Stream ts = fs.outputStream())
+        {
+            if (marp)
+            {
+                PowerpointStyle.Write(v, ts);
+                await fs.commit(System.IO.Path.ChangeExtension(input, ".pptx"), ts);
+            }
+            else
+            {
+                WordStyle.Write(v, ts);
+                await fs.commit(System.IO.Path.ChangeExtension(input, ".docx"), ts);
+            }
+
+        }
+
+        //All the document is being saved in the stream
     }
 }
 

@@ -17,11 +17,20 @@ using AngleSharp;
 
 
 // https://learn.microsoft.com/en-us/office/open-xml/how-to-create-a-presentation-document-by-providing-a-file-name
-
-public partial class ConversionJob
+class PowerpointStyle : ComputedStyle
 {
 
-
+    static public void Write(Vnode v, Stream ts)
+    {
+        var ws = new PowerpointStyle();
+        ws.read(v);
+        using (var docx = PresentationDocument.Create(ts, PresentationDocumentType.Presentation))
+        {
+            var mainPart = docx.AddPresentationPart();
+            mainPart.Presentation = new Presentation();
+            mainPart.Presentation.Save();
+        }
+    }
 
 
     static void Main(string[] args)

@@ -1,23 +1,25 @@
-
-
-
-namespace Datagrove {
-
+namespace Datagrove
+{
 
     // we need something to create files. this might be different for web streams
-    public interface DgWriter {
-        public Task Write(string url,byte[] child);
+    public interface DgWriter
+    {
+        public Task Write(string url, byte[] child);
     }
 
-    public interface DgReader {
-        public  Task<byte[]> Read(string url);
+    public interface DgReader
+    {
+        public Task<byte[]> Read(string url);
     }
-    public interface DgReadWriter : DgWriter,DgReader {
+    public interface DgReadWriter : DgWriter, DgReader
+    {
         // we might want to make this a disk stream
-        Stream outputStream() {
+        Stream outputStream()
+        {
             return new MemoryStream();
         }
-        public async Task commit(string path, Stream s){
+        public async Task commit(string path, Stream s)
+        {
             await Write(path, (s as MemoryStream).ToArray());
         }
     }
@@ -26,17 +28,21 @@ namespace Datagrove {
 
     // for web we can make a simple memory based reader and writer.
 
-    public class MemoryFs : DgWriter, DgReader {
-        public Dictionary<String,byte[]> data = new Dictionary<String,byte[]>();
+    public class MemoryFs : DgWriter, DgReader
+    {
+        public Dictionary<String, byte[]> data = new Dictionary<String, byte[]>();
 
-        public  async Task<byte[]> Read(string url) {
-            return new byte[]{};
+        public async Task<byte[]> Read(string url)
+        {
+            return new byte[] { };
         }
-        public async Task Write(string url,byte[] child) {
-            
+        public async Task Write(string url, byte[] child)
+        {
+
         }
 
-        public static MemoryFs Convert(string input){
+        public static MemoryFs Convert(string input)
+        {
             return new MemoryFs();
         }
     }
@@ -44,22 +50,46 @@ namespace Datagrove {
 
     // we'll need a context to pass arguments from the command line.
     // input bytes is not enough when converting markdown, we need a way to get images etc.
+    public interface HtmlParser
+    {
+        Vnode parse(string html);
+    }
 
-    public partial class ConversionJob {
+    public class Vnode
+    {
+        public string name;
+        public List<Vnode>? children;
+        public Dictionary<string, string>? attribute;
+        public Dictionary<string, string>? style;
+        public string? text;
+        public Vnode(string name)
+        {
+            this.name = name;
+        }
+    }
+
+
+    public partial class ConversionJob
+    {
         public String input; // name to read from fs. 
 
         public DgReadWriter fs;
+        public HtmlParser ps;
 
-        public ConversionJob(String input, DgReadWriter fs){
-                this.input = input;
-                this.fs = fs;
+        public ConversionJob(String input, DgReadWriter fs, HtmlParser p)
+        {
+            this.ps = p;
+            this.input = input;
+            this.fs = fs;
         }
 
-        public static async Task Convert(String input, DgReadWriter fs) {
-            await new ConversionJob(input,fs).exec();
+        public static async Task Convert(String input, DgReadWriter fs, HtmlParser p)
+        {
+            await new ConversionJob(input, fs, p).exec();
         }
-        
-        public async Task exec(){
+
+        public async Task exec()
+        {
             string ext = Path.GetExtension(input);
             switch (ext)
             {
@@ -80,7 +110,7 @@ namespace Datagrove {
                 case ".pptx":
                     await pptx();
                     break;
-            }            
+            }
         }
     }
 

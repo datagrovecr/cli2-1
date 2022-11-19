@@ -2,96 +2,157 @@ using System;
 using CommandLine;
 using System.IO.Compression;
 using Datagrove;
+using AngleSharp.Html.Dom;
+using AngleSharp.Dom;
+using AngleSharp;
+using AngleSharp.Html;
 
-namespace OfficeConvert {
-
-
-// we need the reader to find files that potentially use .. and /
-// so we need to establish a 
- class ReadWriter : Datagrove.DgReadWriter {
-    string readRoot;
-    string writeRoot;
-
-    public ReadWriter(string read, string write, bool unzip=false) {
-        readRoot = read;
-        writeRoot = write;
-    }
-
-    public  async Task<byte[]>   Read(string path)
-    {
-        return await Task.Run(()=>File.ReadAllBytes(Path.Join(readRoot,path)));
-    }  
-    public async Task Write(string path, byte[] data)
-    {
-         await Task.Run(()=>File.WriteAllBytes(Path.Join(writeRoot,path), data));
-    }
- }
-// converting a single docx or pptx file could result in a tree of markdown and image files.
-// 
- public class OfficeConvert
+namespace OfficeConvert
 {
-
-    static public async Task Convert(string inpath, string outpath, string roundtrip="",bool unzip=false)
+    class MyHtmlParser
     {
-        // future work: take a zip file and produce a zip file.
-        // extract zip file into temp directory
-        string ext = Path.GetExtension(inpath);
-        if (ext==".zip") {
-            string tempin = Path.GetTempPath() + "/dgin";
-            string tempout = Path.GetTempPath() + "/dgout";
-            string tempround = Path.GetTempPath() + "/dground";
-            ZipFile.ExtractToDirectory(inpath, tempin);
-            await ConvertDir(tempin, tempout, roundtrip==""?tempround:"",false);
-            ZipFile.CreateFromDirectory(tempout,outpath);            
-        } else if (ext=="") {   
-            await ConvertDir(inpath, outpath, roundtrip, unzip);
+
+        Vnode h(IElement e)
+        {
+            var v = new Vnode(e.TagName);
+            if (e.NodeType == NodeType.Text)
+            {
+                v.text = e.TextContent;
+            }
+            foreach (IAttr o in e.Attributes)
+            {
+                if (v.attribute == null)
+                {
+                    v.attribute = new Dictionary<string, string>();
+                }
+                v.attribute.Add(o.Name, o.Value);
+                if (o.Name == "style")
+                {
+                    var h = (IHtmlElement)(e);
+                    h.ComputeCurrentStyle();
+                }
+            }
+            if (e.HasChildNodes)
+            {
+                v.children = new List<Vnode>();
+                foreach (var o in e.Children)
+                {
+                    v.children.Add(h(o));
+                }
+            }
+
+            return v;
+        }
+        public Vnode parse(string html)
+        {
+            var parser = new AngleSharp.Html.Parser.HtmlParser();
+            var document = parser.ParseDocument(html);
+            if (document == null || document.Body == null)
+            {
+                return new Vnode("body");
+            }
+            return h(document.Body);
         }
     }
 
-    static public  async Task ConvertDir(string input, string outdir, string roundtrip="", bool unzip=false)
+    // we need the reader to find files that potentially use .. and /
+    // so we need to establish a 
+    class ReadWriter : MyHtmlParser, Datagrove.DgReadWriter, HtmlParser
     {
-        string[] files = Directory.GetFiles(input, "*.*", SearchOption.AllDirectories);
-        var w = new ReadWriter(input,outdir);
+        string readRoot;
+        string writeRoot;
 
-        Parallel.ForEach (files, async (mdFile)=>
+        public ReadWriter(string read, string write, bool unzip = false)
         {
-            try
-            {
-                await ConversionJob.Convert(mdFile.Substring(input.Length), w);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"{mdFile} failed {e}");
-            }
-        });
-
-        if (roundtrip != "")
-        {
-            await ConvertDir(outdir, roundtrip, "",false);
+            readRoot = read;
+            writeRoot = write;
         }
-        if (unzip) {
-            string[] files2 = Directory.GetFiles(outdir, "*.*", SearchOption.AllDirectories);
-            Parallel.ForEach (files2, async (path)=>
+
+
+
+
+        public async Task<byte[]> Read(string path)
+        {
+            return await Task.Run(() => File.ReadAllBytes(Path.Join(readRoot, path)));
+        }
+        public async Task Write(string path, byte[] data)
+        {
+            await Task.Run(() => File.WriteAllBytes(Path.Join(writeRoot, path), data));
+        }
+    }
+    // converting a single docx or pptx file could result in a tree of markdown and image files.
+    // 
+    public class OfficeConvert
+    {
+
+        static public async Task Convert(string inpath, string outpath, string roundtrip = "", bool unzip = false)
+        {
+            // future work: take a zip file and produce a zip file.
+            // extract zip file into temp directory
+            string ext = Path.GetExtension(inpath);
+            if (ext == ".zip")
             {
-            string ext = Path.GetExtension(path);    
-            switch(ext){
-                case ".docx": case ".xlsx": case ".pptx":
-                if (unzip)
-                    {
-                        using (ZipArchive archive = ZipFile.OpenRead(path))
-                        {
-                            archive.ExtractToDirectory(path.Substring(0,path.Length - ext.Length), true);
-                        }
-                    }
-                break;
-            }            
+                string tempin = Path.GetTempPath() + "/dgin";
+                string tempout = Path.GetTempPath() + "/dgout";
+                string tempround = Path.GetTempPath() + "/dground";
+                ZipFile.ExtractToDirectory(inpath, tempin);
+                await ConvertDir(tempin, tempout, roundtrip == "" ? tempround : "", false);
+                ZipFile.CreateFromDirectory(tempout, outpath);
+            }
+            else if (ext == "")
+            {
+                await ConvertDir(inpath, outpath, roundtrip, unzip);
+            }
+        }
+
+        static public async Task ConvertDir(string input, string outdir, string roundtrip = "", bool unzip = false)
+        {
+            string[] files = Directory.GetFiles(input, "*.*", SearchOption.AllDirectories);
+            var w = new ReadWriter(input, outdir);
+
+            Parallel.ForEach(files, async (mdFile) =>
+            {
+                try
+                {
+                    await ConversionJob.Convert(mdFile.Substring(input.Length), w, w);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"{mdFile} failed {e}");
+                }
             });
 
+            if (roundtrip != "")
+            {
+                await ConvertDir(outdir, roundtrip, "", false);
+            }
+            if (unzip)
+            {
+                string[] files2 = Directory.GetFiles(outdir, "*.*", SearchOption.AllDirectories);
+                Parallel.ForEach(files2, async (path) =>
+                {
+                    string ext = Path.GetExtension(path);
+                    switch (ext)
+                    {
+                        case ".docx":
+                        case ".xlsx":
+                        case ".pptx":
+                            if (unzip)
+                            {
+                                using (ZipArchive archive = ZipFile.OpenRead(path))
+                                {
+                                    archive.ExtractToDirectory(path.Substring(0, path.Length - ext.Length), true);
+                                }
+                            }
+                            break;
+                    }
+                });
+
+            }
         }
+
+
     }
-
-
-}
 
 }
 
@@ -109,17 +170,17 @@ namespace OfficeConvert {
             */
 
 
-        //commented code is for .zip files
+//commented code is for .zip files
 
-        //using (var archive = new ZipArchive(outfile, ZipArchiveMode.Create, true))
-        //{
-        //    var demoFile = archive.CreateEntry(name);
-        //    using (var entryStream = demoFile.Open())
-        //    {
-        //        using (var streamWriter = new StreamWriter(entryStream))
-        //        {
-        //            String s = textBuilder.ToString();
-        //            streamWriter.Write(s);
-        //        }
-        //    }
-        //}
+//using (var archive = new ZipArchive(outfile, ZipArchiveMode.Create, true))
+//{
+//    var demoFile = archive.CreateEntry(name);
+//    using (var entryStream = demoFile.Open())
+//    {
+//        using (var streamWriter = new StreamWriter(entryStream))
+//        {
+//            String s = textBuilder.ToString();
+//            streamWriter.Write(s);
+//        }
+//    }
+//}
