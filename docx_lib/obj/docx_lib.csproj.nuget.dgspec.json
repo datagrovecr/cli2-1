@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jimhurd/dev/help/cli2-1/docx_lib/docx_lib.csproj": {}
+    "/Users/jim/dev/help/cli2-1/docx_lib/docx_lib.csproj": {}
   },
   "projects": {
-    "/Users/jimhurd/dev/help/cli2-1/docx_lib/docx_lib.csproj": {
+    "/Users/jim/dev/help/cli2-1/docx_lib/docx_lib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jimhurd/dev/help/cli2-1/docx_lib/docx_lib.csproj",
+        "projectUniqueName": "/Users/jim/dev/help/cli2-1/docx_lib/docx_lib.csproj",
         "projectName": "docx_lib",
-        "projectPath": "/Users/jimhurd/dev/help/cli2-1/docx_lib/docx_lib.csproj",
-        "packagesPath": "/Users/jimhurd/.nuget/packages/",
-        "outputPath": "/Users/jimhurd/dev/help/cli2-1/docx_lib/obj/",
+        "projectPath": "/Users/jim/dev/help/cli2-1/docx_lib/docx_lib.csproj",
+        "packagesPath": "/Users/jim/.nuget/packages/",
+        "outputPath": "/Users/jim/dev/help/cli2-1/docx_lib/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jimhurd/.nuget/NuGet/NuGet.Config"
+          "/Users/jim/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -26,8 +26,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj": {
-                "projectPath": "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj"
+              "/Users/jim/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj": {
+                "projectPath": "/Users/jim/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj"
               }
             }
           }
@@ -42,13 +42,13 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AngleSharp": {
-              "target": "Package",
-              "version": "[0.17.1, )"
-            },
             "AngleSharp.Css": {
               "target": "Package",
               "version": "[0.16.4, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.97.0, )"
             },
             "DocumentFormat.OpenXml": {
               "target": "Package",
@@ -87,18 +87,18 @@
         }
       }
     },
-    "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj": {
+    "/Users/jim/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj": {
       "version": "2.3.0",
       "restore": {
-        "projectUniqueName": "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj",
+        "projectUniqueName": "/Users/jim/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj",
         "projectName": "HtmlToOpenXml.dll",
-        "projectPath": "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj",
-        "packagesPath": "/Users/jimhurd/.nuget/packages/",
-        "outputPath": "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/obj/",
+        "projectPath": "/Users/jim/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj",
+        "packagesPath": "/Users/jim/.nuget/packages/",
+        "outputPath": "/Users/jim/dev/help/cli2-1/Html2OpenXml/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "/Users/jimhurd/.nuget/NuGet/NuGet.Config"
+          "/Users/jim/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard1.3",

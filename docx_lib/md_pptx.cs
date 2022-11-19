@@ -15,6 +15,10 @@ using D = DocumentFormat.OpenXml.Drawing;
 using HtmlToOpenXml;
 using AngleSharp;
 
+// we can use directives to create masters and layouts, do we want to though?
+// pptxgenjs only has a single empty master and then writes each slide by itself
+// styles: https://marpit.marp.app/theme-css
+
 
 // https://learn.microsoft.com/en-us/office/open-xml/how-to-create-a-presentation-document-by-providing-a-file-name
 class PowerpointStyle : ComputedStyle

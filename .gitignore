@@ -5,6 +5,9 @@
 test_results/**
 
 .DS_Store
+bin
+obj
+
 
 # User-specific files
 *.rsuser
