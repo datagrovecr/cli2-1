@@ -19,6 +19,22 @@
           }
         }
       },
+      "AngleSharp.Css/0.16.4": {
+        "type": "package",
+        "dependencies": {
+          "AngleSharp": "0.16.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/AngleSharp.Css.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/AngleSharp.Css.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "DocumentFormat.OpenXml/2.18.0": {
         "type": "package",
         "dependencies": {
@@ -426,6 +442,26 @@
         "lib/net472/AngleSharp.xml",
         "lib/netstandard2.0/AngleSharp.dll",
         "lib/netstandard2.0/AngleSharp.xml",
+        "logo.png"
+      ]
+    },
+    "AngleSharp.Css/0.16.4": {
+      "sha512": "Qj9kGhmMWakGL2iDJVsBAJNPEyf5YEsvOXoqVVw0ajamVTGqfjm87knvH/Wlssz49Z2yinVqlnbuzxICFr4t/Q==",
+      "type": "package",
+      "path": "anglesharp.css/0.16.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "anglesharp.css.0.16.4.nupkg.sha512",
+        "anglesharp.css.nuspec",
+        "lib/net46/AngleSharp.Css.dll",
+        "lib/net46/AngleSharp.Css.xml",
+        "lib/net461/AngleSharp.Css.dll",
+        "lib/net461/AngleSharp.Css.xml",
+        "lib/net472/AngleSharp.Css.dll",
+        "lib/net472/AngleSharp.Css.xml",
+        "lib/netstandard2.0/AngleSharp.Css.dll",
+        "lib/netstandard2.0/AngleSharp.Css.xml",
         "logo.png"
       ]
     },
@@ -1617,6 +1653,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "AngleSharp >= 0.17.1",
+      "AngleSharp.Css >= 0.16.4",
       "DocumentFormat.OpenXml >= 2.18.0",
       "HtmlToOpenXml.dll >= 2.3.0",
       "Markdig >= 0.30.4",
@@ -1668,6 +1705,10 @@
           "AngleSharp": {
             "target": "Package",
             "version": "[0.17.1, )"
+          },
+          "AngleSharp.Css": {
+            "target": "Package",
+            "version": "[0.16.4, )"
           },
           "DocumentFormat.OpenXml": {
             "target": "Package",

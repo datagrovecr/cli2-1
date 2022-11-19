@@ -15,6 +15,7 @@
     <PackageReference Include="MSTest.TestFramework" Version="3.0.0-preview-20221110-04" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
     <PackageReference Include="NS.HtmlToOpenXml" Version="1.1.0" />
+    <PackageReference Include="YamlDotNet" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>

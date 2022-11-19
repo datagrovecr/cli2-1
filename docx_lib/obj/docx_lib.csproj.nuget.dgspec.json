@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[0.17.1, )"
             },
+            "AngleSharp.Css": {
+              "target": "Package",
+              "version": "[0.16.4, )"
+            },
             "DocumentFormat.OpenXml": {
               "target": "Package",
               "version": "[2.18.0, )"

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "k4YI9nxGVdDNznotnCNhAThv3b+8T9Et9yVKcgsXvUaO10TbiZYc33/4wxKwY3rQIvaSq15rYFMv4WXjj9b1Vg==",
+  "dgSpecHash": "TRZ092XZSWgb2pVWrUssi53EFhlI+j9b4zBYvD0oGv+NFvWR+8ZoNU1gYb4b9tq1DRhJ0o9WvElpfJwRZ7S8fw==",
   "success": true,
   "projectFilePath": "/Users/jim/dev/help/cli2-1/docx_lib/docx_lib.csproj",
   "expectedPackageFiles": [
     "/Users/jim/.nuget/packages/anglesharp/0.17.1/anglesharp.0.17.1.nupkg.sha512",
+    "/Users/jim/.nuget/packages/anglesharp.css/0.16.4/anglesharp.css.0.16.4.nupkg.sha512",
     "/Users/jim/.nuget/packages/documentformat.openxml/2.18.0/documentformat.openxml.2.18.0.nupkg.sha512",
     "/Users/jim/.nuget/packages/ironcompress/1.2.3/ironcompress.1.2.3.nupkg.sha512",
     "/Users/jim/.nuget/packages/markdig/0.30.4/markdig.0.30.4.nupkg.sha512",

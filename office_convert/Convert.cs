@@ -12,14 +12,10 @@ namespace OfficeConvert {
     string readRoot;
     string writeRoot;
 
-    bool unzip = false;
-
     public ReadWriter(string read, string write, bool unzip=false) {
         readRoot = read;
         writeRoot = write;
-        this.unzip = unzip;
     }
-
 
     public  async Task<byte[]>   Read(string path)
     {
@@ -28,20 +24,6 @@ namespace OfficeConvert {
     public async Task Write(string path, byte[] data)
     {
          await Task.Run(()=>File.WriteAllBytes(Path.Join(writeRoot,path), data));
-        if (unzip){
-            string ext = Path.GetExtension(path);    
-            switch(ext){
-                case ".docx": case ".xlsx": case ".pptx":
-                if (unzip)
-                    {
-                        using (ZipArchive archive = ZipFile.OpenRead(path))
-                        {
-                            archive.ExtractToDirectory(path.Substring(0,path.Length - ext.Length), true);
-                        }
-                    }
-                break;
-            }            
-        }       
     }
  }
 // converting a single docx or pptx file could result in a tree of markdown and image files.
@@ -85,7 +67,26 @@ namespace OfficeConvert {
 
         if (roundtrip != "")
         {
-            await ConvertDir(outdir, roundtrip, "",unzip);
+            await ConvertDir(outdir, roundtrip, "",false);
+        }
+        if (unzip) {
+            string[] files2 = Directory.GetFiles(outdir, "*.*", SearchOption.AllDirectories);
+            Parallel.ForEach (files2, async (path)=>
+            {
+            string ext = Path.GetExtension(path);    
+            switch(ext){
+                case ".docx": case ".xlsx": case ".pptx":
+                if (unzip)
+                    {
+                        using (ZipArchive archive = ZipFile.OpenRead(path))
+                        {
+                            archive.ExtractToDirectory(path.Substring(0,path.Length - ext.Length), true);
+                        }
+                    }
+                break;
+            }            
+            });
+
         }
     }
 

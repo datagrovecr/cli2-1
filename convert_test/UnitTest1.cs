@@ -36,19 +36,19 @@ public class UnitTest1
         get { return testContextInstance; }
         set { testContextInstance = value; }
     }
+    [TestMethod]
+    public async Task ConversionTests1()
+    {
+        var d = Directory.GetCurrentDirectory()!+ "/../../../";
+        await OfficeConvert.Convert(d+"tests/one", d+"TestResults/tests", d+"TestResults/round", true);
+    }
 
 
     [TestMethod]
-    public async Task TestMethod1()
+    public async Task ConversionTests()
     {
-        // we need to go up 4 to get to cli2-1
-
-        string input= Directory.GetCurrentDirectory() + "/../../../tests";
-        string output = Directory.GetCurrentDirectory() + "/../../../TestResults/tests";
-        string round = Directory.GetCurrentDirectory() + "/../../../TestResults/round";
-
-        await OfficeConvert.Convert(input, output, round, false);
-
+        var d = Directory.GetCurrentDirectory()!+ "/../../../";
+        await OfficeConvert.Convert(d+"tests", d+"TestResults/tests", d+"TestResults/round", true);
     }
 
     [TestMethod]

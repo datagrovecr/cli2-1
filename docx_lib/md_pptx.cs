@@ -21,28 +21,8 @@ using AngleSharp;
 public partial class ConversionJob
 {
 
-    async Task<AngleSharp.Dom.IDocument> parseHtml(string html){
-        var config = Configuration.Default;
-        using var context = BrowsingContext.New(config);
-        using var doc = await context.OpenAsync(req => req.Content(html));
-        return doc;        
-    }
 
 
-    public async Task md_pptx(string html)
-    {
-        using (Stream ts = fs.outputStream())
-        {
-            using (var docx = PresentationDocument.Create(ts, PresentationDocumentType.Presentation))
-            {
-                var mainPart = docx.AddPresentationPart();
-                mainPart.Presentation = new Presentation();
-                mainPart.Presentation.Save();
-            }
-
-            await fs.commit(System.IO.Path.ChangeExtension(input, ".docx"), ts);
-        }
-    }
 
     static void Main(string[] args)
     {
