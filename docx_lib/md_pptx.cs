@@ -27,7 +27,6 @@ class PowerpointStyle : ComputedStyle
     static public void Write(Vnode v, Stream ts)
     {
         var ws = new PowerpointStyle();
-        ws.read(v);
         using (var docx = PresentationDocument.Create(ts, PresentationDocumentType.Presentation))
         {
             var mainPart = docx.AddPresentationPart();
