@@ -2,59 +2,11 @@
 using System;
 using System.IO.Compression;
 using CommandLine;
-using AngleSharp.Html.Dom;
-using AngleSharp.Dom;
-using AngleSharp;
-using AngleSharp.Html;
+
 using Datagrove;
 
 namespace OfficeConvert
 {
-    class MyHtmlParser
-    {
-
-        Vnode h(IElement e)
-        {
-            var v = new Vnode(e.TagName);
-            if (e.NodeType == NodeType.Text)
-            {
-                v.text = e.TextContent;
-            }
-            foreach (IAttr o in e.Attributes)
-            {
-                if (v.attribute == null)
-                {
-                    v.attribute = new Dictionary<string, string>();
-                }
-                v.attribute.Add(o.Name, o.Value);
-                if (o.Name == "style")
-                {
-                    var h = (IHtmlElement)(e);
-                    h.ComputeCurrentStyle();
-                }
-            }
-            if (e.HasChildNodes)
-            {
-                v.children = new List<Vnode>();
-                foreach (var o in e.Children)
-                {
-                    v.children.Add(h(o));
-                }
-            }
-
-            return v;
-        }
-        public Vnode parse(string html)
-        {
-            var parser = new AngleSharp.Html.Parser.HtmlParser();
-            var document = parser.ParseDocument(html);
-            if (document == null || document.Body == null)
-            {
-                return new Vnode("body");
-            }
-            return h(document.Body);
-        }
-    }
 
     // we need the reader to find files that potentially use .. and /
     // so we need to establish a 

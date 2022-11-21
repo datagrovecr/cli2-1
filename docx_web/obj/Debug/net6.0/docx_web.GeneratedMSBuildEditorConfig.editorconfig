@@ -11,41 +11,41 @@ build_property.EnableTrimAnalyzer = true
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = docx_web
 build_property.RootNamespace = docx_web
-build_property.ProjectDir = /Users/jim/dev/help/cli2-1/docx_web/
+build_property.ProjectDir = /Users/jimhurd/dev/help/cli2-1/docx_web/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/jim/dev/help/cli2-1/docx_web
+build_property.MSBuildProjectDirectory = /Users/jimhurd/dev/help/cli2-1/docx_web
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/jim/dev/help/cli2-1/docx_web/App.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jim/dev/help/cli2-1/docx_web/Pages/Counter.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jim/dev/help/cli2-1/docx_web/Pages/FetchData.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jim/dev/help/cli2-1/docx_web/Pages/Index.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jim/dev/help/cli2-1/docx_web/Shared/SurveyPrompt.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jim/dev/help/cli2-1/docx_web/_Imports.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jim/dev/help/cli2-1/docx_web/Shared/MainLayout.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-up02e12gn4
 
-[/Users/jim/dev/help/cli2-1/docx_web/Shared/NavMenu.razor]
+[/Users/jimhurd/dev/help/cli2-1/docx_web/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-el3n2vppo6

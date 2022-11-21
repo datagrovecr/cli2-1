@@ -237,6 +237,30 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
+      "OfficeIMO.Word/0.4.0": {
+        "type": "package",
+        "dependencies": {
+          "DocumentFormat.OpenXml": "2.18.0",
+          "SixLabors.ImageSharp": "2.1.3"
+        },
+        "compile": {
+          "lib/net6.0/OfficeIMO.Word.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/OfficeIMO.Word.dll": {
+            "related": ".xml"
+          }
+        },
+        "contentFiles": {
+          "contentFiles/any/net6.0/OfficeIMO.ico": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        }
+      },
       "OneOf/3.0.223": {
         "type": "package",
         "compile": {
@@ -460,6 +484,23 @@
         },
         "runtime": {
           "lib/netcoreapp3.1/SixLabors.Fonts.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SixLabors.ImageSharp/2.1.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0",
+          "System.Text.Encoding.CodePages": "5.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/SixLabors.ImageSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/SixLabors.ImageSharp.dll": {
             "related": ".xml"
           }
         }
@@ -1176,6 +1217,19 @@
         },
         "compile": {
           "ref/netstandard1.5/System.Runtime.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/5.0.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
             "related": ".xml"
           }
         }
@@ -2007,6 +2061,41 @@
         "netstandard.library.nuspec"
       ]
     },
+    "OfficeIMO.Word/0.4.0": {
+      "sha512": "hz7FnmTR+PBCavvJtrWTS5JL21PhpgC08AwaIRYA+/pecl2aBW4lIFySSsYiOFuU8+jiZSsnKLCfG9asXpnazA==",
+      "type": "package",
+      "path": "officeimo.word/0.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "OfficeIMO.png",
+        "README.MD",
+        "content/OfficeIMO.ico",
+        "contentFiles/any/net472/OfficeIMO.ico",
+        "contentFiles/any/net48/OfficeIMO.ico",
+        "contentFiles/any/net5.0/OfficeIMO.ico",
+        "contentFiles/any/net6.0/OfficeIMO.ico",
+        "contentFiles/any/net7.0/OfficeIMO.ico",
+        "contentFiles/any/netstandard2.0/OfficeIMO.ico",
+        "contentFiles/any/netstandard2.1/OfficeIMO.ico",
+        "lib/net472/OfficeIMO.Word.dll",
+        "lib/net472/OfficeIMO.Word.xml",
+        "lib/net48/OfficeIMO.Word.dll",
+        "lib/net48/OfficeIMO.Word.xml",
+        "lib/net5.0/OfficeIMO.Word.dll",
+        "lib/net5.0/OfficeIMO.Word.xml",
+        "lib/net6.0/OfficeIMO.Word.dll",
+        "lib/net6.0/OfficeIMO.Word.xml",
+        "lib/net7.0/OfficeIMO.Word.dll",
+        "lib/net7.0/OfficeIMO.Word.xml",
+        "lib/netstandard2.0/OfficeIMO.Word.dll",
+        "lib/netstandard2.0/OfficeIMO.Word.xml",
+        "lib/netstandard2.1/OfficeIMO.Word.dll",
+        "lib/netstandard2.1/OfficeIMO.Word.xml",
+        "officeimo.word.0.4.0.nupkg.sha512",
+        "officeimo.word.nuspec"
+      ]
+    },
     "OneOf/3.0.223": {
       "sha512": "YWabiHBFfDdKIO7/TEa72mARVVo5u5FqFnfXuTqjIupMvJlhoH8d0m4uKtczaINuT0vGR1qlXJayeU6bTw5myg==",
       "type": "package",
@@ -2298,6 +2387,28 @@
         "sixlabors.fonts.1.0.0-beta18.nupkg.sha512",
         "sixlabors.fonts.128.png",
         "sixlabors.fonts.nuspec"
+      ]
+    },
+    "SixLabors.ImageSharp/2.1.3": {
+      "sha512": "8yonNRWX3vUE9k29ta0Hbfa0AEc0hbDjSH/nZ3vOTJEXmY6hLnGsjDKoz96Z+AgOsrdkAu6PdL/Ebaf70aitzw==",
+      "type": "package",
+      "path": "sixlabors.imagesharp/2.1.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net472/SixLabors.ImageSharp.dll",
+        "lib/net472/SixLabors.ImageSharp.xml",
+        "lib/netcoreapp2.1/SixLabors.ImageSharp.dll",
+        "lib/netcoreapp2.1/SixLabors.ImageSharp.xml",
+        "lib/netcoreapp3.1/SixLabors.ImageSharp.dll",
+        "lib/netcoreapp3.1/SixLabors.ImageSharp.xml",
+        "lib/netstandard2.0/SixLabors.ImageSharp.dll",
+        "lib/netstandard2.0/SixLabors.ImageSharp.xml",
+        "lib/netstandard2.1/SixLabors.ImageSharp.dll",
+        "lib/netstandard2.1/SixLabors.ImageSharp.xml",
+        "sixlabors.imagesharp.128.png",
+        "sixlabors.imagesharp.2.1.3.nupkg.sha512",
+        "sixlabors.imagesharp.nuspec"
       ]
     },
     "SkiaSharp/2.88.3": {
@@ -4420,6 +4531,38 @@
         "system.runtime.nuspec"
       ]
     },
+    "System.Runtime.CompilerServices.Unsafe/5.0.0": {
+      "sha512": "ZD9TMpsmYJLrxbbmdvhwt9YEgG5WntEnZ/d1eH8JBX9LBp+Ju8BSBhUGbZMNVHHomWo2KVImJhTDl2hIgw/6MA==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net45/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net45/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Runtime.Extensions/4.3.0": {
       "sha512": "guW0uK0fn5fcJJ1tJVXYd7/1h5F+pea1r7FLSOz/f8vPEqbR2ZAknuRDvTQ8PzAilDveOxNjSfr0CHfIQfFk8g==",
       "type": "package",
@@ -5633,25 +5776,26 @@
       "DocumentFormat.OpenXml >= 2.18.0",
       "HtmlToOpenXml.dll >= 2.3.0",
       "Markdig >= 0.30.4",
+      "OfficeIMO.Word >= 0.4.0",
       "Parquet.Net >= 4.1.1",
       "ShapeCrawler >= 0.37.0",
       "YamlDotNet >= 12.0.2"
     ]
   },
   "packageFolders": {
-    "/Users/jim/.nuget/packages/": {}
+    "/Users/jimhurd/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jim/dev/help/cli2-1/docx_lib/docx_lib.csproj",
+      "projectUniqueName": "/Users/jimhurd/dev/help/cli2-1/docx_lib/docx_lib.csproj",
       "projectName": "docx_lib",
-      "projectPath": "/Users/jim/dev/help/cli2-1/docx_lib/docx_lib.csproj",
-      "packagesPath": "/Users/jim/.nuget/packages/",
-      "outputPath": "/Users/jim/dev/help/cli2-1/docx_lib/obj/",
+      "projectPath": "/Users/jimhurd/dev/help/cli2-1/docx_lib/docx_lib.csproj",
+      "packagesPath": "/Users/jimhurd/.nuget/packages/",
+      "outputPath": "/Users/jimhurd/dev/help/cli2-1/docx_lib/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jim/.nuget/NuGet/NuGet.Config"
+        "/Users/jimhurd/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -5663,8 +5807,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/jim/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj": {
-              "projectPath": "/Users/jim/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj"
+            "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj": {
+              "projectPath": "/Users/jimhurd/dev/help/cli2-1/Html2OpenXml/HtmlToOpenXml.csproj"
             }
           }
         }
@@ -5694,6 +5838,10 @@
           "Markdig": {
             "target": "Package",
             "version": "[0.30.4, )"
+          },
+          "OfficeIMO.Word": {
+            "target": "Package",
+            "version": "[0.4.0, )"
           },
           "Parquet.Net": {
             "target": "Package",
